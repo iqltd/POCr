@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"      
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets" 
+      xmlns:p="http://primefaces.org/ui">  
+      
+    <h:body>
+ 		<ui:composition template="pocr-template.xhtml">
+ 		
+	    	<ui:define name="main-content">
+	    		<p:growl id="growl" life="2000" />
+	    	
+	    		<h:panelGroup id="form" styleClass="lineOfElements">
+	    			<dl class="element">
+			    		<dt><h:outputLabel for="formName" value="#{msg['newform.formName']}"/></dt>      
+				    	<dd><p:inputText id="formName" value="#{formBean.formName}" required="true" label="#{msg['newform.formName']}">
+				    			<f:ajax />
+				    		</p:inputText>
+				    	</dd>
+				    </dl>
+				    
+				    <div class="element">
+				    	<p:commandButton id="addField" value="#{msg['newform.addField']}" update="formFields"  immediate="true"
+			    				 actionListener="#{formBean.addField}"  icon="ui-icon-check" ajax="true" disabled="#{empty formBean.formName}"/>
+		  			</div>  	
+			    </h:panelGroup>
+			    		    
+		    	<h:panelGroup id="formFields" binding="#{formFieldsComponent}" styleClass="linesGroup">
+			    	<ui:repeat var="field" value="#{formBean.fields}">
+			    	    <h:panelGroup layout="block" styleClass="lineOfElements" id="row">
+			    	    	<dl class="element">
+								<dt><h:outputLabel id="fieldNameLbl" value="#{msg['newform.fieldName']}"/></dt>
+								<dd><p:inputText id="fieldName" value="#{field.fieldName}" required="true" requiredMessage="Field name is required!" >
+										<f:ajax />
+									</p:inputText>
+								</dd>
+							</dl>
+							<dl class="element">
+								<dt><h:outputLabel id="fieldTypeLbl" value="#{msg['newform.fieldType']}"/></dt>
+								<dd><p:selectOneMenu id="fieldType"  value="#{field.fieldType}" >
+										<f:ajax />
+							            <f:selectItems value="#{formBean.types}" />
+							        </p:selectOneMenu></dd>
+							</dl>
+							<dl class="element">
+								<dt><h:outputLabel id="fieldRequiredLbl" value="#{msg['newform.required']}"/></dt>
+								<dd><p:selectBooleanButton id="fieldRequired" value="#{field.required}" onLabel="#{msg['common.yes']}" offLabel="#{msg['common.no']}" 
+															onIcon="ui-icon-check" offIcon="ui-icon-close" style="width:60px" >
+										<f:ajax />
+									</p:selectBooleanButton>							
+								</dd>
+							</dl>
+							<dl class="element">
+								<dt><h:outputLabel id="fieldDescriptionLbl" value="#{msg['newform.description']}"/></dt>
+								<dd><p:inputText id="fieldDescription" value="#{field.description}" style="width:200px">
+									<f:ajax />
+								</p:inputText>
+								</dd>
+							</dl>
+							
+							<p:commandButton action="#{formBean.removeField(field)}" id="removeField" styleClass="element"
+											update=":#{formFieldsComponent.clientId}" icon="ui-icon-close" immediate="true"/>
+							
+						</h:panelGroup>
+			        </ui:repeat>
+		        </h:panelGroup>
+		        
+		        <h:panelGroup styleClass="lineOfElements">
+		        	<p:commandButton id="submit" value="#{msg['common.submit']}" type="submit" update=":pocr-form"/>
+		        	<p:commandButton id="reset" value="#{msg['common.reset']}" immediate="true" update=":pocr-form" action="#{formBean.reset}"/>
+		        	<p:commandButton id="cancel" value="#{msg['common.cancel']}" type="cancel" immediate="true" />
+		        </h:panelGroup>
+			</ui:define>        
+		</ui:composition>
+    </h:body>  
+</html>  
