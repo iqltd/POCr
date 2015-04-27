@@ -4,10 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 
 import org.slf4j.Logger;
@@ -22,21 +20,11 @@ public class FormBean {
 
 	private String formName;
 
-	private List<FieldBean> fields;
-
-	// TODO move in a session scoped managed bean
-	private List<String> types;
+	private List<FieldBean> fields;;
 
 	@PostConstruct
 	public void init() {
 		fields = new ArrayList<FieldBean>();
-		populateTypes();
-	}
-
-	private void populateTypes() {
-		types = new ArrayList<String>();
-		types.add("String");
-		types.add("Integer");
 	}
 
 	public String getFormName() {
@@ -63,13 +51,7 @@ public class FormBean {
 
 	public void removeField(final FieldBean field) {
 		fields.remove(field);
-		LOGGER.warn("Fields: " + fields.toString());
-	}
-
-	public void addMessage(final String summary) {
-		final FacesMessage message = new FacesMessage(
-				FacesMessage.SEVERITY_INFO, summary, null);
-		FacesContext.getCurrentInstance().addMessage(null, message);
+		LOGGER.warn("Field removed: " + field);
 	}
 
 	public void reset() {
@@ -77,10 +59,6 @@ public class FormBean {
 		for (final FieldBean field : fields) {
 			field.initialize();
 		}
-	}
-
-	public List<String> getTypes() {
-		return types;
 	}
 
 }
