@@ -1,0 +1,87 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>eu.micul01.pocr</groupId>
+		<artifactId>POCr</artifactId>
+		<version>1.1</version>
+	</parent>
+
+	<artifactId>pocr-ear</artifactId>
+	<packaging>ear</packaging>
+
+	<name>pocr ear</name>
+
+
+	<properties>
+		<maven-ear-version>2.10</maven-ear-version>
+		<wls-version>12.1.3.0</wls-version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>eu.micul01.pocr</groupId>
+			<artifactId>pocr-web</artifactId>
+			<type>war</type>
+		</dependency>
+		<dependency>
+			<groupId>eu.micul01.pocr</groupId>
+			<artifactId>pocr-ejb</artifactId>
+			<type>ejb</type>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-ear-plugin</artifactId>
+				<version>${maven-ear-version}</version>
+				<configuration>
+					<version>1.4</version>
+					<modules>
+						<webModule>
+							<groupId>eu.micul01.pocr</groupId>
+							<artifactId>pocr-web</artifactId>
+							<bundleFileName>pocr-web.war</bundleFileName>
+							<contextRoot>/pocr-web</contextRoot>
+						</webModule>
+						<ejbModule>
+							<groupId>eu.micul01.pocr</groupId>
+							<artifactId>pocr-ejb</artifactId>
+							<bundleFileName>pocr-ejb.jar</bundleFileName>
+						</ejbModule>
+					</modules>
+					<displayName>pocr-ear</displayName>
+					<generateApplicationXml>true</generateApplicationXml>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>com.oracle.weblogic</groupId>
+				<artifactId>wls-maven-plugin</artifactId>
+				<version>${wls-version}</version>
+				<executions>
+					<execution>
+						<phase>install</phase>
+						<configuration>
+							<userKeyFile>/home/micul01/wls/userkeyfile.secure</userKeyFile>
+							<userConfigFile>/home/micul01/wls/userconf.secure</userConfigFile>
+							<middlewareHome>/opt/oracle/home</middlewareHome>
+							<upload>true </upload>
+							<name>${project.build.finalName}</name>
+							<action>deploy</action>
+							<source>${project.build.directory}/${project.build.finalName}.${project.packaging} </source>
+							<remote>false</remote>
+							<verbose>true </verbose>
+							<targets>wls2</targets>
+						</configuration>
+						<goals>
+							<goal>deploy</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+		<finalName>pocr-ear</finalName>
+	</build>
+
+</project>

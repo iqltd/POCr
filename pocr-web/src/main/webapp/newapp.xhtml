@@ -2,71 +2,112 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:f="http://java.sun.com/jsf/core"      
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:ui="http://java.sun.com/jsf/facelets" 
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:custom="http://java.sun.com/jsf/composite/custom">  
-      
-    <h:body>
- 		<ui:composition template="pocr-template.xhtml">
- 		
-	    	<ui:define name="main-content">
-	    	
-	    		<h:form id="app-form">
-		    		<p:growl id="msgs" life="5000" />
-		    	
-		    		<h:panelGroup id="app" styleClass="lineOfElements">
-		    			<dl class="element">
-				    		<dt><p:outputLabel for="appName" value="#{msg['newapp.appName']}"/></dt>      
-					    	<dd><p:inputText id="appName" value="#{appBean.appName}" required="true" 
-					    					 requiredMessage="#{msg['newapp.required.appName']}"
-					    					 validatorMessage="#{msg['newapp.valid.appName']}">
-					    			<f:ajax />
-					    			<f:validateRegex pattern="^[a-zA-Z][a-zA-Z0-9]*?$"/>
-					    		</p:inputText>
-					    	</dd>
-					    </dl>
-					    
-					    <div class="element">
-					    	<p:commandButton id="addForm" value="#{msg['newapp.addForm']}" 
-				    				 icon="ui-icon-plus" ajax="true" onclick="PF('formFields').show();" />
-			  			</div>  	
-				    </h:panelGroup>
-				    
-				    <h:panelGroup id="appForms" styleClass="lineOfElements">
-				    
-					    <p:orderList value="#{appBean.forms}" var="form" controlsLocation="none" itemValue="#{form}">
-					    	<f:facet name="caption"><h:outputText value="#{msg['newapp.forms']}"/></f:facet>
-					    	
-					    	<p:column style="width:10%">
-					            <h:outputText styleClass="ui-icon ui-icon-arrowthick-2-n-s" />
-					        </p:column>
-					        
-					        <p:column style="width:30%">
-					            <h:outputText value="#{form.formName}" />
-					        </p:column>
-					 
-					    </p:orderList>
-				    
-				    </h:panelGroup>
-				    
-				    <h:panelGroup styleClass="lineOfElements">
-			        	<p:commandButton id="submit" value="#{msg['common.submit']}" type="submit" update=":app-form"/>
-			        	<p:commandButton id="cancel" value="#{msg['common.cancel']}" type="cancel" immediate="true" />
-			        </h:panelGroup>
-				</h:form>    
-			    
-			    <p:dialog id="formFields" widgetVar="formFields" dynamic="true" fitViewport="true" 
-			    		  header="#{msg['newform.title']}" modal="true" closeOnEscape="true"
-			    		  footer="footer" minWidth="800" min-height="450" width="80%" height="80%">
-			    	
-			    		<custom:newform formBean="#{formBean}" />
-			    </p:dialog>
-			    		    
-		        
-		        
-			</ui:define>        
-		</ui:composition>
-    </h:body>  
-</html>  
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:custom="http://java.sun.com/jsf/composite/custom">
+
+<h:body>
+	<ui:composition template="pocr-template.xhtml">
+		<ui:param name="pageName" value="#{msg['newapp.title']}" />
+
+		<ui:define name="main-content">
+
+			<h:form id="app-form">
+				<p:growl id="msgs" life="5000" />
+
+				<h:panelGroup id="app" styleClass="lineOfElements">
+					<dl class="element">
+						<dt>
+							<p:outputLabel for="appName" value="#{msg['newapp.appName']}" />
+						</dt>
+						<dd>
+							<p:inputText id="appName" value="#{appBean.name}" required="true"
+								requiredMessage="#{msg['newapp.required.appName']}"
+								validatorMessage="#{msg['newapp.valid.appName']}">
+								<f:ajax />
+								<f:validateRegex pattern="^[a-zA-Z][a-zA-Z0-9]*?$" />
+							</p:inputText>
+						</dd>
+					</dl>
+					<dl class="element">
+						<dt>
+							<p:outputLabel for="appDescription" value="#{msg['newapp.appDescription']}" />
+						</dt>
+						<dd>
+							<p:inputText id="appDescription" value="#{appBean.description}">
+								<f:ajax />
+							</p:inputText>
+						</dd>
+					</dl>
+
+					<div class="element">
+						<p:commandButton id="addForm" value="#{msg['newapp.addForm']}"
+							icon="ui-icon-plus" ajax="true" update="@all" immediate="true"
+							action="#{formBean.showFormDialog}" />
+					</div>
+				</h:panelGroup>
+
+				<h:panelGroup id="appForms" styleClass="lineOfElements">
+
+
+					<p:dataTable var="form" value="#{appBean.forms}"
+						rendered="#{not empty appBean.forms}">
+
+						<f:facet name="header">#{msg['newapp.forms']}</f:facet>
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="#{msg['newapp.formName']}" />
+							</f:facet>
+							<h:outputText value="#{form.name}" />
+						</p:column>
+
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="#{msg['newapp.formSize']}" />
+							</f:facet>
+							<h:outputText value="#{form.fields.size()}" />
+						</p:column>
+
+						<p:column style="width: 10%">
+							<p:commandButton action="#{formBean.showFormDialog}"
+								id="editForm" icon="ui-icon-pencil" />
+
+						</p:column>
+
+						<p:column style="width: 10%">
+							<p:commandButton id="removeForm" icon="ui-icon-close"
+								immediate="true" />
+						</p:column>
+
+						<f:facet name="footer">#{msg['newapp.summary']}</f:facet>
+
+					</p:dataTable>
+
+				</h:panelGroup>
+
+				<h:panelGroup styleClass="lineOfElements">
+					<p:commandButton id="submit" value="#{msg['common.submit']}"
+						type="submit" action="#{appBean.submit}" />
+					<p:commandButton id="cancel" value="#{msg['common.cancel']}"
+						type="cancel" action="home?faces-redirect=true" immediate="true" />
+				</h:panelGroup>
+			</h:form>
+
+			<p:dialog id="formFieldsDialog" widgetVar="formFieldsDialog"
+				dynamic="true" fitViewport="true"
+				visible="#{formBean.formDialogVisible}"
+				header="#{msg['newform.title']}" modal="true" closeOnEscape="true"
+				footer="#{msg['newform.explanation']}" minWidth="800"
+				min-height="450" width="80%" height="80%">
+
+				<custom:newform formBean="#{formBean}" />
+			</p:dialog>
+
+
+
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

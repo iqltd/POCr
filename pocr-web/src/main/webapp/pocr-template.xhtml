@@ -13,17 +13,26 @@
       
     <h:body>
     	<div id="page-wrap">
-	    	
+	    	<f:view locale="#{lang.localeCode}">
 	    	
 	    	
 	    		<div id="header">
-					<img src="resources/img/logo_small_bw.png" />
-					<!-- TODO Add Language -->
+	    			<div style="float:left">
+						<img src="resources/img/logo_small_bw.png" />
+					</div>
+					
+					<div style="float:right">
+						<h:form id="languageForm">
+							<p:selectOneMenu value="#{lang.localeCode}" onchange="submit()"
+											 valueChangeListener="#{lang.countryLocaleCodeChanged}">
+	   							<f:selectItems value="#{lang.countriesInMap}" /> 
+	   						</p:selectOneMenu>
+						</h:form>
+					</div>
 				</div>
 				
 				<div id="band">
-					<!-- TODO add dynamic field -->
-					Create form
+					<h4>#{pageName}</h4>
 				</div>
 				
 				<div id="content-wrap">
@@ -35,7 +44,7 @@
 					<div style="clear:both"/>									
 				
 				</div>
-	    	
+	    	</f:view>
 	    </div>
 	    	
     	<div id="footer">

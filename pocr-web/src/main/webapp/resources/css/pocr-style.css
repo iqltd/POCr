@@ -66,6 +66,29 @@ html, body {
   	transform: translateY(-100%);
 }
 
+.messageSection {
+	text-align: center;
+}
+
+.message {
+    color: #2288DD;
+    font-family: Verdana;
+    font-size: 16px;
+    font-weight: 600;
+    text-shadow: 1px 1px 1px #ccc;
+}
+
+.cmdLink {
+    font-family: Verdana;
+    font-size: 16px;
+    text-decoration: none;
+}
+
+.cmdLink:hover {
+	text-decoration: underline;
+}
+
+
 dd {
 	margin: 0;
 }
