@@ -27,7 +27,7 @@ public class FieldTypeConverter implements Converter {
 
 		LOGGER.info("getAsObject(). String to be converted: " + typeAsString);
 		final String[] typeSplitted = typeAsString.split(SEPARATOR);
-		if (typeSplitted.length != 3) {
+		if (typeSplitted.length != 4) {
 			final FacesMessage msg = new FacesMessage("Eroare de conversie.",
 					"Format invalid string tip camp.");
 			msg.setSeverity(FacesMessage.SEVERITY_ERROR);
@@ -37,6 +37,7 @@ public class FieldTypeConverter implements Converter {
 		final TypeEntity type = new TypeEntity();
 		type.setId(Integer.parseInt(typeSplitted[0]));
 		type.setName(typeSplitted[1]);
+		type.setClassName(typeSplitted[2]);
 		return type;
 	}
 
@@ -51,7 +52,7 @@ public class FieldTypeConverter implements Converter {
 		}
 		final TypeEntity type = (TypeEntity) typeAsObject;
 		final String typeAsString = type.getId() + SEPARATOR + type.getName()
-				+ SEPARATOR + END;
+				+ SEPARATOR + type.getClassName() + SEPARATOR + END;
 		LOGGER.info("getAsString(). String resulted: " + typeAsString);
 		return typeAsString;
 	}

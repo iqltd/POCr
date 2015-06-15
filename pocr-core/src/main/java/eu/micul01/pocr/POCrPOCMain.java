@@ -1,4 +1,4 @@
-package com.test.pocr;
+package eu.micul01.pocr;
 
 import java.io.File;
 import java.io.IOException;

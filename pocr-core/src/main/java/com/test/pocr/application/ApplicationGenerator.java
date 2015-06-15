@@ -8,15 +8,15 @@ import org.codehaus.plexus.util.FileUtils;
 
 public class ApplicationGenerator {
 
-	public static final String PATH_PREFIX = "./target/";
-	public static final String FOLDER_TREE = "./folderTree/";
+	public static final String FOLDER_TREE = "/var/pocr/folderTree/";
+	public static final String path = "/var/pocr/";
 
 	private final ApplicationModel model;
 	private final File outputFolder;
 
 	public ApplicationGenerator(final ApplicationModel model) {
 		this.model = model;
-		outputFolder = new File(PATH_PREFIX + model.getName());
+		outputFolder = new File(path + model.getName());
 	}
 
 	/**
@@ -33,8 +33,8 @@ public class ApplicationGenerator {
 	private void copyFolderTree() throws IOException {
 		outputFolder.mkdir();
 		FileUtils.cleanDirectory(outputFolder);
-		final File folderTree = new File(getClass().getClassLoader()
-				.getResource(FOLDER_TREE).getFile());
+
+		final File folderTree = new File(FOLDER_TREE);
 		FileUtils.copyDirectoryStructure(folderTree, outputFolder);
 	}
 

@@ -64,6 +64,11 @@
 				<version>${project.version}</version>
 				<type>ejb</type>
 			</dependency>
+			<dependency>
+				<groupId>eu.micul01.pocr</groupId>
+				<artifactId>pocr-core</artifactId>
+				<version>${project.version}</version>
+			</dependency>
 
 			<dependency>
 				<groupId>javax</groupId>

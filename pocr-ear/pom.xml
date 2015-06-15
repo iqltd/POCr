@@ -29,6 +29,10 @@
 			<artifactId>pocr-ejb</artifactId>
 			<type>ejb</type>
 		</dependency>
+		<dependency>
+			<groupId>eu.micul01.pocr</groupId>
+			<artifactId>pocr-core</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -37,6 +41,7 @@
 				<artifactId>maven-ear-plugin</artifactId>
 				<version>${maven-ear-version}</version>
 				<configuration>
+					<defaultLibBundleDir>lib</defaultLibBundleDir>
 					<version>1.4</version>
 					<modules>
 						<webModule>
@@ -50,6 +55,11 @@
 							<artifactId>pocr-ejb</artifactId>
 							<bundleFileName>pocr-ejb.jar</bundleFileName>
 						</ejbModule>
+						<jarModule>
+							<groupId>eu.micul01.pocr</groupId>
+							<artifactId>pocr-core</artifactId>
+			               <includeInApplicationXml>true</includeInApplicationXml>
+			             </jarModule>
 					</modules>
 					<displayName>pocr-ear</displayName>
 					<generateApplicationXml>true</generateApplicationXml>

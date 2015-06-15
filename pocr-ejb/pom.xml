@@ -19,6 +19,12 @@
 
 	<dependencies>
 		<dependency>
+			<groupId>eu.micul01.pocr</groupId>
+			<artifactId>pocr-core</artifactId>
+			<scope>provided</scope>
+		</dependency>
+	
+		<dependency>
 			<groupId>javax</groupId>
 			<artifactId>javaee-api</artifactId>
 			<scope>provided</scope>

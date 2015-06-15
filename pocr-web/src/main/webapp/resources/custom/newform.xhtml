@@ -19,7 +19,7 @@
  				<p:panel id="createFormPnl" style="padding: 50px 25px 25px;" >
  				
 		    		<p:growl id="growl" life="15000" />
-		    	
+		    	 
 		    		<h:panelGroup id="form" styleClass="lineOfElements">
 		    			<dl class="element">
 				    		<dt><p:outputLabel for="formName" id="formNameLbl" value="#{msg['newform.formName']}"/></dt>      
@@ -35,7 +35,7 @@
 					    
 					    <dl class="element">
 				    		<dt><p:outputLabel for="formDescription" id="formDescriptionLbl" value="#{msg['newform.formDescription']}"/></dt>      
-					    	<dd><p:inputText id="formDescription" value="#{cc.attrs.formBean.formDescription}" > 
+					    	<dd><p:inputText id="formDescription" value="#{cc.attrs.formBean.description}" > 
 					    			<f:ajax />
 					    		</p:inputText>
 					    	</dd>

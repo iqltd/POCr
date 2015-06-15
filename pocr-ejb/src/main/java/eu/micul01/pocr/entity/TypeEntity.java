@@ -2,6 +2,7 @@ package eu.micul01.pocr.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,9 +20,14 @@ public class TypeEntity implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
 	private int id;
 
+	@Column(name = "name")
 	private String name;
+
+	@Column(name = "class")
+	private String className;
 
 	public int getId() {
 		return id;
@@ -37,6 +43,14 @@ public class TypeEntity implements Serializable {
 
 	public void setName(final String name) {
 		this.name = name;
+	}
+
+	public String getClassName() {
+		return className;
+	}
+
+	public void setClassName(final String className) {
+		this.className = className;
 	}
 
 	@Override

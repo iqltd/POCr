@@ -46,6 +46,7 @@ public class TestEntities {
 
 		final TypeEntity type = new TypeEntity();
 		type.setName("Type");
+		type.setClassName("Type.class");
 
 		final ApplicationEntity application = new ApplicationEntity();
 		application.setName("app");

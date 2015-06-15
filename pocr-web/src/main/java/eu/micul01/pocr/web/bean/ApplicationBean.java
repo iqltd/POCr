@@ -1,5 +1,6 @@
 package eu.micul01.pocr.web.bean;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +13,7 @@ import javax.faces.bean.ViewScoped;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import eu.micul01.pocr.ejb.PocrBean;
 import eu.micul01.pocr.entity.ApplicationEntity;
 import eu.micul01.pocr.entity.FormEntity;
 
@@ -29,6 +31,8 @@ public class ApplicationBean implements Serializable {
 	private ApplicationEntity model;
 	private boolean deployed;
 
+	private PocrBean pocrBean;
+
 	@ManagedProperty(value = "#{appCollectionBean}")
 	private AppCollectionBean appCollection;
 
@@ -42,10 +46,6 @@ public class ApplicationBean implements Serializable {
 		model.setForms(new ArrayList<>());
 	}
 
-	public void onReorder() {
-		LOGGER.info("List reordered!");
-	}
-
 	public String submit() {
 		LOGGER.info("submit(). Application submitted: " + model.getName());
 
@@ -54,9 +54,12 @@ public class ApplicationBean implements Serializable {
 		return "home?faces-redirect=true";
 	}
 
-	public void deploy() {
+	public void deploy() throws IOException, ClassNotFoundException {
 		LOGGER.info("deploy(). Deploy requested for application "
 				+ model.getName());
+
+		pocrBean.deployApplication(model);
+
 		setDeployed(true);
 
 	}
@@ -64,6 +67,13 @@ public class ApplicationBean implements Serializable {
 	public void run() {
 		LOGGER.info("run(). Run requested for application " + model.getName());
 
+	}
+
+	public void addForm(final FormEntity form) {
+		LOGGER.info("addForm(). Form added: " + form.getName());
+		LOGGER.info("addForm(). Fields: " + form.getFields());
+
+		model.getForms().add(form);
 	}
 
 	public boolean isDeployed() {
@@ -94,11 +104,6 @@ public class ApplicationBean implements Serializable {
 		return model.getForms();
 	}
 
-	public void addForm(final FormEntity form) {
-		LOGGER.info("addForm(). Form added: " + form.getName());
-		model.getForms().add(form);
-	}
-
 	public AppCollectionBean getAppCollection() {
 		return appCollection;
 	}
@@ -113,6 +118,14 @@ public class ApplicationBean implements Serializable {
 
 	public void setDescription(final String description) {
 		model.setDescription(description);
+	}
+
+	public PocrBean getPocrBean() {
+		return pocrBean;
+	}
+
+	public void setPocrBean(final PocrBean pocrBean) {
+		this.pocrBean = pocrBean;
 	}
 
 }

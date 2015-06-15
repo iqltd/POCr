@@ -10,6 +10,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 import eu.micul01.pocr.ejb.DbBean;
+import eu.micul01.pocr.ejb.PocrBean;
 import eu.micul01.pocr.entity.ApplicationEntity;
 
 @ManagedBean(name = "appCollectionBean")
@@ -22,6 +23,9 @@ public class AppCollectionBean implements Serializable {
 
 	@EJB
 	private DbBean dbBean;
+
+	@EJB
+	private PocrBean pocrBean;
 
 	@PostConstruct
 	public void init() {
@@ -41,6 +45,8 @@ public class AppCollectionBean implements Serializable {
 	public void addApp(final ApplicationEntity app) {
 		final ApplicationBean appBean = new ApplicationBean();
 		appBean.setModel(app);
+		appBean.setPocrBean(pocrBean);
+		appBean.setAppCollection(this);
 		apps.add(appBean);
 	}
 

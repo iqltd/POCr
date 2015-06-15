@@ -25,20 +25,9 @@ public class FieldTypesBean implements Serializable {
 	@EJB
 	private DbBean dbBean;
 
-	// TODO take them from db
 	@PostConstruct
 	public void populateTypes() {
 		types = dbBean.getFieldTypes();
-
-		// types = new ArrayList<TypeEntity>();
-		// final TypeEntity string = new TypeEntity();
-		// string.setName("string");
-		//
-		// final TypeEntity integer = new TypeEntity();
-		// integer.setName("integer");
-		//
-		// types.add(string);
-		// types.add(integer);
 	}
 
 	public List<TypeEntity> getTypes() {

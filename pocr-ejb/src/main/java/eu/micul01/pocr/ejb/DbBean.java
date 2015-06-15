@@ -24,11 +24,13 @@ public class DbBean {
 			return;
 		}
 		for (final FormEntity form : application.getForms()) {
+			form.setApplication(application);
 			entityManager.persist(form);
 			if (form.getFields() == null) {
 				continue;
 			}
 			for (final FieldEntity field : form.getFields()) {
+				field.setForm(form);
 				entityManager.persist(field);
 			}
 		}
