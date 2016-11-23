@@ -1,2 +1,2 @@
 # POCr
-Easily generate simple form-based applications
+Generate, build and deploy on a weblogic server simple JSF applications
