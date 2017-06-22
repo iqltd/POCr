@@ -9,12 +9,12 @@
 		<class>eu.micul01.pocr.entity.FieldEntity</class>
 		<class>eu.micul01.pocr.entity.TypeEntity</class>
 		<properties>
-			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost/pocr_test" />
-			<property name="javax.persistence.jdbc.user" value="pocr_test" />
-			<property name="javax.persistence.jdbc.password" value="pocr_test" />
-			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
-			<property name="eclipselink.ddl-generation" value="create-or-extend-tables" />
-            <property name="eclipselink.logging.level" value="INFO" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:derby:memory:POCR_TEST;create=true" />
+			<property name="javax.persistence.jdbc.user" value="app" />
+			<property name="javax.persistence.jdbc.password" value="app" />
+			<property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.EmbeddedDriver" />
+			<property name="eclipselink.ddl-generation" value="drop-and-create-tables"/>
+			<property name="eclipselink.ddl-generation.output-mode" value="database"/>
 		</properties>
 	</persistence-unit>
 </persistence>

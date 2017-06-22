@@ -17,7 +17,6 @@ public class TestEntities {
 
 	@BeforeClass
 	public static void setUp() {
-		// Get the entity manager for the tests.
 		EMF = Persistence.createEntityManagerFactory("pocr_test-pu");
 		EM = EMF.createEntityManager();
 	}

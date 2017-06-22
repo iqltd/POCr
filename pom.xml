@@ -39,6 +39,7 @@
 		<mysql-connector-version>5.1.6</mysql-connector-version>
 		<primefaces-version>5.1</primefaces-version>
 		<slf4j-version>1.7.9</slf4j-version>
+		<derby-version>10.8.3.0</derby-version>
 	</properties>
 
 	<repositories>
@@ -122,6 +123,11 @@
 				<groupId>mysql</groupId>
 				<artifactId>mysql-connector-java</artifactId>
 				<version>${mysql-connector-version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.derby</groupId>
+				<artifactId>derby</artifactId>
+				<version>${derby-version}</version>
 			</dependency>
 
 		</dependencies>
