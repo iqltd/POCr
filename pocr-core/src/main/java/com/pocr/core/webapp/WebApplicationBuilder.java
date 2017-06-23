@@ -1,11 +1,10 @@
 package com.pocr.core.webapp;
 
 import com.pocr.core.application.ApplicationBuilder;
+import com.pocr.core.deployment.WildflyMavenPluginHelper;
+import static com.pocr.core.constants.WebappConstants.Maven.*;
 
 public class WebApplicationBuilder extends ApplicationBuilder {
-
-	public final String DD_PATH = "/WEB-INF/web.xml";
-	public final String PACKAGING = "war";
 
 	private final DeploymentDescriptorBuilder ddBuilder;
 
@@ -14,6 +13,7 @@ public class WebApplicationBuilder extends ApplicationBuilder {
 		ddBuilder = new DeploymentDescriptorBuilder(name);
 		addArtifact(ddBuilder.getGenerator());
 		getPomBuilder().setPackaging(PACKAGING);
+		getPomBuilder().addBuildPlugin(WildflyMavenPluginHelper.getWlsPlugin());
 	}
 
 	protected DeploymentDescriptorBuilder getDdBuilder() {

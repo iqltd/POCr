@@ -41,14 +41,6 @@
 				<configuration>
 					<filename>${project.build.finalName}.war</filename>
 				</configuration>
-				<executions>
-					<execution>
-						<phase>install</phase>
-						<goals>
-							<goal>deploy</goal>
-						</goals>
-					</execution>
-				</executions>
 			</plugin>
 		</plugins>
 		<finalName>pocr-web</finalName>

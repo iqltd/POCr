@@ -1,12 +1,8 @@
-package com.pocr.core.mvn;
+package com.pocr.core.util;
 
 import org.apache.maven.model.Dependency;
 
-public class DependencyBuilder {
-
-	private DependencyBuilder() {
-
-	}
+public final class DependencyUtil {
 
 	public static Dependency getDependency(final String groupId,
 			final String artifactId, final String version) {

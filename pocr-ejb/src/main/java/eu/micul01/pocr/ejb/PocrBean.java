@@ -28,7 +28,8 @@ public class PocrBean {
 		builder.addForm(formDto);
 
 		final File outputFolder = builder.getGenerator().generateApplication();
-		ApplicationDeployer.deployApplication(outputFolder);
+		ApplicationDeployer deployer = new ApplicationDeployer(outputFolder);
+		deployer.deployApplication();
 
 	}
 }

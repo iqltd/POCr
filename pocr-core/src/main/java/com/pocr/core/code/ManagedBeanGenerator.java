@@ -10,7 +10,7 @@ public class ManagedBeanGenerator implements Generator {
 	private final BeanModel model;
 	private final static String INTRA_PROJECT_PATH = "src/main/java/";
 
-	public ManagedBeanGenerator(final BeanModel model) {
+	ManagedBeanGenerator(final BeanModel model) {
 		this.model = model;
 	}
 

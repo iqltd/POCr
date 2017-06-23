@@ -8,19 +8,17 @@ import com.sun.codemodel.JClassAlreadyExistsException;
 
 public class ManagedBeanGeneratorTest {
 
-	private static String PACKAGE_NAME = "TestBean";
-	private static String CLASS_NAME = "TestBean";
-
 	private ManagedBeanBuilder builder;
 
 	@Before
 	public void init() {
-		builder = new ManagedBeanBuilder(PACKAGE_NAME, CLASS_NAME);
+		builder = new ManagedBeanBuilder("test.package", "TestBean");
 	}
 
-	public void addOkProperty() throws JClassAlreadyExistsException {
+	@Test
+	public void addProperty_valid_success() throws JClassAlreadyExistsException {
 
-		final String fieldName = "camp1";
+		final String fieldName = "field1";
 		builder.addProperty(fieldName, int.class);
 
 		final BeanModel model = builder.getModel();

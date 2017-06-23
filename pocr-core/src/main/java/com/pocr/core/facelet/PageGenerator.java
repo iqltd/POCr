@@ -11,13 +11,12 @@ import org.jdom2.output.XMLOutputter;
 
 import com.pocr.core.application.Generator;
 
+import static com.pocr.core.constants.JsfConstants.Path.*;
+
 public class PageGenerator implements Generator {
 
 	private final Document model;
 	private final String name;
-
-	private static final String FILE_PATH = "src/main/webapp/";
-	private static final String EXTENSION = ".xhtml";
 
 	public PageGenerator(final String name, final Document jdomDoc) {
 		model = jdomDoc;
@@ -25,20 +24,15 @@ public class PageGenerator implements Generator {
 	}
 
 	public String getRelativePath() {
-		return FILE_PATH + name + EXTENSION;
+		return PAGES_BASEDIR + name + EXTENSION;
 	}
 
 	public void writeInFolder(final File folder) throws IOException {
-		// Output as XML
-		// create XMLOutputter
 		final XMLOutputter xml = new XMLOutputter();
-		// we want to format the xml. This is used only for demonstration.
-		// pretty formatting adds extra spaces and is generally not required.
 		xml.setFormat(Format.getPrettyFormat());
 		final File page = new File(folder, getRelativePath());
 		final OutputStream out = new FileOutputStream(page);
 		xml.output(model, out);
-
 	}
 
 }

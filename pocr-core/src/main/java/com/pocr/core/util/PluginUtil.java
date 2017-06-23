@@ -1,4 +1,4 @@
-package com.pocr.core.mvn;
+package com.pocr.core.util;
 
 import java.util.Map;
 import java.util.Map.Entry;
@@ -6,13 +6,9 @@ import java.util.Map.Entry;
 import org.apache.maven.model.Plugin;
 import org.codehaus.plexus.util.xml.Xpp3Dom;
 
-public class PluginBuilder {
+public class PluginUtil {
 
 	private static final String CONFIGURATION = "configuration";
-
-	private PluginBuilder() {
-
-	}
 
 	public static Plugin getPlugin(final String groupId,
 			final String artifactId, final String version) {

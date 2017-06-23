@@ -30,9 +30,8 @@ public class AppCollectionBean implements Serializable {
 
 	@PostConstruct
 	public void init() {
-		// TODO Decomenteaza dupa testare
-		// final List<ApplicationEntity> appEntities = dbBean.getApplications();
-		final List<ApplicationEntity> appEntities = new ArrayList<ApplicationEntity>();
+		 final List<ApplicationEntity> appEntities = dbBean.getApplications();
+//		final List<ApplicationEntity> appEntities = new ArrayList<ApplicationEntity>();
 		for (final ApplicationEntity appEntity : appEntities) {
 			final ApplicationBean appBean = new ApplicationBean();
 			appBean.setModel(appEntity);

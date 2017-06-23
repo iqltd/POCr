@@ -1,4 +1,4 @@
-package com.pocr.core.mvn;
+package com.pocr.core.util;
 
 import org.codehaus.plexus.util.xml.Xpp3Dom;
 

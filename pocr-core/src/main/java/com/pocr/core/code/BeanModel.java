@@ -24,41 +24,41 @@ public class BeanModel {
 	private static final String GET_PREFIX = "get";
 	private static final String SET_PREFIX = "set";
 
-	public BeanModel(final String qualifiedName)
+	BeanModel(final String qualifiedName)
 			throws JClassAlreadyExistsException {
 		cm = new JCodeModel();
 		bean = cm._class(qualifiedName);
 		fields = new ArrayList<String>();
 	}
 
-	protected JCodeModel getCodeModel() {
+	JCodeModel getCodeModel() {
 		return cm;
 	}
 
-	protected JAnnotationUse addAnnotation(
+	JAnnotationUse addAnnotation(
 			final Class<? extends Annotation> annotation) {
 		return bean.annotate(annotation);
 	}
 
-	protected void addField(final String name, final Class<?> type) {
+	void addField(final String name, final Class<?> type) {
 		bean.field(JMod.PRIVATE, type, name);
 		fields.add(name);
 	}
 
-	protected List<String> getListOfFields() {
+	List<String> getListOfFields() {
 		final List<String> fields = new ArrayList<String>();
 		fields.addAll(bean.fields().keySet());
 		return fields;
 	}
 
-	protected void addGetter(final String name, final Class<?> type) {
+	void addGetter(final String name, final Class<?> type) {
 		final String capitalizedName = WordUtils.capitalize(name);
 		final JMethod getter = bean.method(JMod.PUBLIC, type, GET_PREFIX
 				+ capitalizedName);
 		getter.body()._return(JExpr.ref(name));
 	}
 
-	protected void addSetter(final String name, final Class<?> type) {
+	void addSetter(final String name, final Class<?> type) {
 		final String capitalizedName = WordUtils.capitalize(name);
 		final JMethod setter = bean.method(JMod.PUBLIC, void.class, SET_PREFIX
 				+ capitalizedName);

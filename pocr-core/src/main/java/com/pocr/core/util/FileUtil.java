@@ -1,11 +1,13 @@
 package com.pocr.core.util;
 
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
+import org.apache.commons.compress.archivers.tar.TarArchiveEntry;
+import org.apache.commons.compress.archivers.tar.TarArchiveInputStream;
+import org.apache.commons.compress.utils.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -53,11 +55,32 @@ public final class FileUtil {
 		return prop;
 	}
 
-	public static Map<String, String> convertToMap(final Properties properties) {
+	private static Map<String, String> convertToMap(final Properties properties) {
 		final Map<String, String> map = new HashMap<String, String>();
 		for (final String name : properties.stringPropertyNames()) {
 			map.put(name, properties.getProperty(name));
 		}
 		return map;
 	}
+
+    public static void unTar(InputStream inputStream, File directory) throws IOException {
+        TarArchiveInputStream in = new TarArchiveInputStream(inputStream);
+        TarArchiveEntry entry = in.getNextTarEntry();
+        while (entry != null) {
+            if (entry.isDirectory()) {
+                entry = in.getNextTarEntry();
+                continue;
+            }
+            File file = new File(directory, entry.getName());
+            File parent = file.getParentFile();
+            if (!parent.exists()) {
+                parent.mkdirs();
+            }
+            OutputStream out = new FileOutputStream(file);
+            IOUtils.copy(in, out);
+            out.close();
+            entry = in.getNextTarEntry();
+        }
+        in.close();
+    }
 }

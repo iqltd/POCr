@@ -6,12 +6,13 @@ import org.junit.Test;
 
 import com.pocr.core.dto.FieldDto;
 
+import static com.pocr.core.constants.JsfConstants.Xhtml.*;
+
 public class InputTextHelperTest {
 
 	@Test
 	public void nominalCase() {
-		final FieldDto field = new FieldDto();
-		field.setName("fieldName");
+		final FieldDto field = new FieldDto("fieldName", String.class);
 		field.setRequired(true);
 
 		final Element input = InputTextHelper.getInput("bean", field);
@@ -20,11 +21,11 @@ public class InputTextHelperTest {
 
 		final Element inputText = input.getChildren().get(1);
 		Assert.assertEquals("fieldName",
-				inputText.getAttributeValue(InputTextHelper.LABEL_ATTR));
+				inputText.getAttributeValue(LABEL_ATTR));
 		Assert.assertEquals("true",
-				inputText.getAttributeValue(InputTextHelper.REQUIRED_ATTR));
+				inputText.getAttributeValue(REQUIRED_ATTR));
 		Assert.assertEquals("#{bean.fieldName}",
-				inputText.getAttributeValue(InputTextHelper.VALUE_ATTR));
+				inputText.getAttributeValue(VALUE_ATTR));
 
 	}
 }

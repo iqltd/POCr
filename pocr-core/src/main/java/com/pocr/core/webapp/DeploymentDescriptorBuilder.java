@@ -18,21 +18,17 @@ import org.jcp.xmlns.xml.ns.javaee.WebAppType;
 import org.jcp.xmlns.xml.ns.javaee.WelcomeFileListType;
 
 import com.pocr.core.util.Util;
+import static com.pocr.core.constants.WebappConstants.*;
 
 public class DeploymentDescriptorBuilder {
 
-	private static final String WEB_APP_VERSION = "2.5";
-
-	private final WebAppType model;
-	private final ObjectFactory factory;
-	private final Set<String> servlets;
+	private final WebAppType model = new WebAppType();
+	private final ObjectFactory factory = new ObjectFactory();
+	private final Set<String> servlets = new HashSet<>();
 
 	public DeploymentDescriptorBuilder(final String id) {
-		model = new WebAppType();
 		model.setId(id);
-		model.setVersion(WEB_APP_VERSION);
-		factory = new ObjectFactory();
-		servlets = new HashSet<String>();
+		model.setVersion(Schema.VERSION);
 	}
 
 	public Generator getGenerator() {
@@ -89,7 +85,6 @@ public class DeploymentDescriptorBuilder {
 		if (patterns.isEmpty()) {
 			throw new IllegalArgumentException("Invalid list of patterns");
 		}
-		// TODO vezi specificatia Servlet 3.1 pentru validare
 		for (final String pattern : patterns) {
 			if (pattern.contains("<") || pattern.contains(">")
 					|| pattern.contains("&gt") || pattern.contains("&lt")) {

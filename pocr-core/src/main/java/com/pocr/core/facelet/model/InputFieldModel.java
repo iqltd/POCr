@@ -4,10 +4,7 @@ import java.io.Serializable;
 
 public class InputFieldModel implements Serializable {
 
-	/**
-	 *
-	 */
-	private static final long serialVersionUID = -1890777759149001526L;
+	private static final long serialVersionUID = 1;
 
 	private String beanName;
 	private String label;

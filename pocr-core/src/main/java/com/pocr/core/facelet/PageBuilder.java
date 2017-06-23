@@ -13,17 +13,15 @@ import com.pocr.core.facelet.xhtml.NamespaceEnum;
 
 public class PageBuilder implements Serializable {
 
-	private static final long serialVersionUID = -7255084228885882934L;
+	private static final long serialVersionUID = 1;
 
 	private final String name;
 
-	private final Element define;
+	private final Element define = new Element("define",
+			JdomUtil.getNamespace(NamespaceEnum.FACELETS));
 
 	public PageBuilder(final String name) {
 		this.name = name;
-		define = new Element("define",
-				JdomUtil.getNamespace(NamespaceEnum.FACELETS));
-
 	}
 
 	public void addComponent(final String beanName, final FieldDto field) {
@@ -50,7 +48,6 @@ public class PageBuilder implements Serializable {
 		define.setAttribute("name", "actualForm");
 		composition.addContent(define);
 
-		final Generator generator = new PageGenerator(name, jdomDoc);
-		return generator;
+		return new PageGenerator(name, jdomDoc);
 	}
 }

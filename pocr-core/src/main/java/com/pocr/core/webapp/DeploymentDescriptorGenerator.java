@@ -13,9 +13,9 @@ import org.jcp.xmlns.xml.ns.javaee.WebAppType;
 import com.pocr.core.application.Generator;
 import com.pocr.core.exception.PocrException;
 
-public class DeploymentDescriptorGenerator implements Generator {
+import static com.pocr.core.constants.WebappConstants.*;
 
-	private final static String INTRA_PROJECT_PATH = "src/main/webapp/WEB-INF/web.xml";
+public class DeploymentDescriptorGenerator implements Generator {
 
 	private final WebAppType model;
 
@@ -24,14 +24,10 @@ public class DeploymentDescriptorGenerator implements Generator {
 	}
 
 	public String getRelativePath() {
-		return INTRA_PROJECT_PATH;
+		return Path.DD;
 	}
 
-	/**
-	 * @throws PocrException
-	 *             on marshalling error
-	 */
-	public void writeInFolder(final File folder) throws IOException {
+	public void writeInFolder(final File folder) throws IOException, PocrException {
 		final File fullpath = new File(folder, getRelativePath());
 		try {
 			fullpath.getParentFile().mkdirs();
@@ -43,8 +39,7 @@ public class DeploymentDescriptorGenerator implements Generator {
 		}
 	}
 
-	private Marshaller getMarshaller() throws JAXBException, PropertyException {
-		// create JAXB context and initializing Marshaller
+	private Marshaller getMarshaller() throws JAXBException {
 		final JAXBContext jaxbContext = JAXBContext
 				.newInstance(WebAppType.class);
 		final Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
@@ -52,8 +47,7 @@ public class DeploymentDescriptorGenerator implements Generator {
 		jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT,
 				Boolean.TRUE);
 		jaxbMarshaller.setProperty(Marshaller.JAXB_SCHEMA_LOCATION,
-				"http://java.sun.com/xml/ns/javaee "
-						+ "http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd");
+				Schema.JAVAEE_URI + Schema.WEBAPP_URI);
 		return jaxbMarshaller;
 	}
 

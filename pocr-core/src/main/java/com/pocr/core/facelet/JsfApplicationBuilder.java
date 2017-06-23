@@ -1,33 +1,35 @@
 package com.pocr.core.facelet;
 
 import com.pocr.core.application.Generator;
+import com.pocr.core.constants.JsfConstants;
 import com.pocr.core.dto.FormDto;
 import org.apache.maven.model.Dependency;
 
 import com.pocr.core.code.ManagedBeanBuilder;
 import com.pocr.core.dto.FieldDto;
-import com.pocr.core.mvn.DependencyBuilder;
+import com.pocr.core.util.DependencyUtil;
 import com.pocr.core.webapp.WebApplicationBuilder;
+
+import static com.pocr.core.constants.JsfConstants.*;
 
 public class JsfApplicationBuilder extends WebApplicationBuilder {
 
-	public static final String CLASSES_PATH = "/WEB-INF/classes";
-	public static final String FACES_SERVLET = "javax.faces.webapp.FacesServlet";
-	private static final String PATTERN = "*.xhtml";
-
-	public static final String GROUP_ID = "javax.faces";
-	public static final String ARTIFACT_ID = "jsf-api";
-	public static final String VERSION = "2.1";
-	public static final String SCOPE = "provided";
-
-	public String indexPage;
+	private String indexPage;
 
 	public JsfApplicationBuilder(final String name) {
 		super(name);
-		getDdBuilder().addServlet(FACES_SERVLET, PATTERN);
-		final Dependency dependency = DependencyBuilder.getScopedDependency(
-				GROUP_ID, ARTIFACT_ID, VERSION, SCOPE);
+		addFacesServlet();
+		addFacesApiDependency();
+	}
+
+	private void addFacesApiDependency() {
+		final Dependency dependency = DependencyUtil.getScopedDependency(
+				Maven.GROUP_ID, Maven.ARTIFACT_ID, Maven.VERSION, Maven.SCOPE);
 		getPomBuilder().addDependency(dependency);
+	}
+
+	private void addFacesServlet() {
+		getDdBuilder().addServlet(DD.FACES_SERVLET, DD.PATTERN);
 	}
 
 	public void addForm(final FormDto form) {
@@ -47,7 +49,7 @@ public class JsfApplicationBuilder extends WebApplicationBuilder {
 		addArtifact(generator);
 
 		if (indexPage == null) {
-			indexPage = PATTERN.replace("*", form.getFormName());
+			indexPage = DD.PATTERN.replace("*", form.getFormName());
 			getDdBuilder().addWelcomePage(indexPage);
 		}
 	}

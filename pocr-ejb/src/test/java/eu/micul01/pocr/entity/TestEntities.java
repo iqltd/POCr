@@ -27,17 +27,6 @@ public class TestEntities {
 		EMF.close();
 	}
 
-	@Before
-	public void init() {
-		final EntityTransaction trx = EM.getTransaction();
-		trx.begin();
-		EM.createQuery("Delete from FieldEntity").executeUpdate();
-		EM.createQuery("Delete from TypeEntity").executeUpdate();
-		EM.createQuery("Delete from FormEntity").executeUpdate();
-		EM.createQuery("Delete from ApplicationEntity").executeUpdate();
-		trx.commit();
-	}
-
 	@Test
 	public void test() {
 		// Get a new transaction

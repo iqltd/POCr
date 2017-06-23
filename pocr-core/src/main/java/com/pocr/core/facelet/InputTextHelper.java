@@ -6,17 +6,10 @@ import org.jdom2.Element;
 
 import com.pocr.core.dto.FieldDto;
 import com.pocr.core.facelet.xhtml.NamespaceEnum;
+import static com.pocr.core.constants.JsfConstants.Xhtml.*;
 
 public class InputTextHelper {
 
-	private InputTextHelper() {
-	}
-
-	public static final String OUTPUT_LABEL_ELEM = "outputLabel";
-	public static final String INPUT_TEXT_ELEM = "inputText";
-	public static final String REQUIRED_ATTR = "required";
-	public static final String LABEL_ATTR = "label";
-	public static final String VALUE_ATTR = "value";
 
 	public static Element getInput(final String beanName, final FieldDto field) {
 		final Element div = new Element("div");

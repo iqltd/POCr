@@ -6,7 +6,7 @@ import java.util.List;
 
 public final class ApplicationModel implements Serializable {
 
-	private static final long serialVersionUID = 9173277311569679954L;
+	private static final long serialVersionUID = 1L;
 
 	private final String name;
 
@@ -25,7 +25,7 @@ public final class ApplicationModel implements Serializable {
 		artifacts.add(artifactGenerator);
 	}
 
-	List<Generator> getArtifacts() {
+	public List<Generator> getArtifacts() {
 		final List<Generator> artifactsCopy = new ArrayList<Generator>();
 		artifactsCopy.addAll(artifacts);
 		return artifactsCopy;

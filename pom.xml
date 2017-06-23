@@ -19,13 +19,15 @@
 		<module>pocr-core</module>
 		<module>pocr-ejb</module>
 		<module>pocr-web</module>
-	</modules>
+        <module>pocr-install</module>
+    </modules>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
 		<codemodel-version>2.6</codemodel-version>
 		<commons-lang3-version>3.3.2</commons-lang3-version>
+		<commons-compress-version>1.14</commons-compress-version>
 		<derby-version>10.8.3.0</derby-version>
 		<hibernate-version>5.2.10.Final</hibernate-version>
 		<javaee-api-version>7.0</javaee-api-version>
@@ -114,6 +116,11 @@
 				<groupId>org.apache.derby</groupId>
 				<artifactId>derby</artifactId>
 				<version>${derby-version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-compress</artifactId>
+				<version>${commons-compress-version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>

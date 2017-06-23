@@ -17,6 +17,13 @@
  			<ui:param name="pageName" value="#{msg['home.title']}"/>
  		
 	    	<ui:define name="main-content">
+
+				<p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+
+				<p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
+					<h:outputText value="Deploying..." />
+					<h:outputText value="Please wait" />
+				</p:dialog>
 	    	
 	    		<h:form id="home-form">
 		    	
@@ -65,9 +72,9 @@
 	    					<p:commandButton id="addApp" value="#{msg['home.newApp']}" 
 						    				 icon="ui-icon-plus" ajax="false" action="newapp?faces-redirect=true" />
 	    				</div>
-	    			</h:panelGroup>			
-			        
-				</h:form>    
+	    			</h:panelGroup>
+
+				</h:form>
 			    
 			</ui:define>        
 		</ui:composition>  

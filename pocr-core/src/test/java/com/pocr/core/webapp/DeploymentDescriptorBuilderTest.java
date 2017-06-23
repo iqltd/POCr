@@ -8,10 +8,6 @@ import org.junit.Test;
 
 public class DeploymentDescriptorBuilderTest {
 
-	public DeploymentDescriptorBuilderTest() {
-		// TODO Auto-generated constructor stub
-	}
-
 	private static DeploymentDescriptorBuilder ddBuilder;
 	private static String VALID_SERVLET_CLASS = "javax.faces.webapp.FacesServlet";
 	private static String VALID_PATTERN = "*.xhtml";

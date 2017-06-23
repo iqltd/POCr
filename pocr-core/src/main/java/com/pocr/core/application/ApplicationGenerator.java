@@ -1,22 +1,22 @@
 package com.pocr.core.application;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.util.List;
 
+import com.pocr.core.util.Configuration;
+import com.pocr.core.util.FileUtil;
 import org.codehaus.plexus.util.FileUtils;
 
 public class ApplicationGenerator {
 
-	public static final String FOLDER_TREE = "/tmp/folderTree/";
-	public static final String path = "/tmp/pocr/";
+	private static final String SKELETON_TAR = "skeleton.tar";
 
 	private final ApplicationModel model;
 	private final File outputFolder;
 
 	public ApplicationGenerator(final ApplicationModel model) {
 		this.model = model;
-		outputFolder = new File(path + model.getName());
+		outputFolder = new File(Configuration.OUTPUT_DIRECTORY.value + model.getName());
 	}
 
 	public File generateApplication() throws IOException {
@@ -29,8 +29,8 @@ public class ApplicationGenerator {
 		outputFolder.mkdir();
 		FileUtils.cleanDirectory(outputFolder);
 
-		final File folderTree = new File(FOLDER_TREE);
-		FileUtils.copyDirectoryStructure(folderTree, outputFolder);
+		InputStream is = getClass().getClassLoader().getResourceAsStream(SKELETON_TAR);
+		FileUtil.unTar(is, outputFolder);
 	}
 
 	private void writeArtifacts(final List<Generator> artifacts)

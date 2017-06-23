@@ -4,39 +4,44 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.pocr.core.application.Generator;
-import com.pocr.core.deployment.WildflyMavenPluginHelper;
+import com.pocr.core.util.PluginUtil;
+import com.sun.org.apache.xalan.internal.xsltc.cmdline.Compile;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.maven.model.Build;
 import org.apache.maven.model.Dependency;
 import org.apache.maven.model.Model;
 import org.apache.maven.model.Plugin;
 
-import static com.pocr.core.mvn.MavenConstants.*;
+import static com.pocr.core.constants.MavenConstants.Pom;
+import static com.pocr.core.constants.MavenConstants.Compiler;
 
 public class PomBuilder {
 
-	private final Model model;
+	private final Model model = new Model();
 
 	public PomBuilder(final String artifactName) {
-		model = new Model();
-		model.setGroupId(GROUP_ID);
-		model.setArtifactId(StringUtils.isEmpty(artifactName) ? DEFAULT_ARTIFACT_NAME
-				: artifactName);
-		model.setVersion(VERSION);
+		initModel(artifactName);
+		model.setBuild(getBuild(artifactName));
+	}
 
+	private Build getBuild(String artifactName) {
 		final Build build = new Build();
 		final Map<String, String> configurationMap = new HashMap<String, String>();
-		configurationMap.put("source", "1.8");
-		configurationMap.put("target", "1.8");
-		build.addPlugin(PluginBuilder.getPluginWithConfiguration(
-				"org.apache.maven.plugins", "maven-compiler-plugin", "3.3",
+		configurationMap.put(Compiler.SOURCE, Compiler.JAVA_SRC_VERSION);
+		configurationMap.put(Compiler.TARGET, Compiler.JAVA_TARGET_VERSION);
+		build.addPlugin(PluginUtil.getPluginWithConfiguration(
+				Compiler.GROUP_ID, Compiler.ARTIFACT_ID, Compiler.VERSION,
 				configurationMap));
 		build.setFinalName(artifactName);
-		model.setBuild(build);
+		return build;
+	}
 
-
-		addBuildPlugin(WildflyMavenPluginHelper.getWlsPlugin());
-		getPomModel().setModelVersion(MODEL_VERSION);
+	private void initModel(String artifactName) {
+		model.setGroupId(Pom.GROUP_ID);
+		model.setArtifactId(StringUtils.isEmpty(artifactName) ? Pom.DEFAULT_ARTIFACT_NAME
+				: artifactName);
+		model.setVersion(Pom.VERSION);
+		model.setModelVersion(Pom.MODEL_VERSION);
 	}
 
 	public Generator getGenerator() {

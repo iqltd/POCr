@@ -1,6 +1,7 @@
 package com.pocr.core.application;
 
-import com.pocr.core.mvn.MavenConstants;
+import com.pocr.core.exception.PocrException;
+import com.pocr.core.constants.MavenConstants;
 import com.pocr.core.mvn.PomBuilder;
 
 public class ApplicationBuilder {
@@ -10,9 +11,10 @@ public class ApplicationBuilder {
 
 	public ApplicationBuilder(final String applicationName) {
 		if (applicationName == null || applicationName.isEmpty()) {
-			throw new IllegalArgumentException("Cannot build an application without a name");
+			throw new PocrException("Cannot build an application without a name");
 		}
 		model = new ApplicationModel(applicationName);
+
 		pomBuilder = new PomBuilder(applicationName);
         model.addArtifact(pomBuilder.getGenerator());
 	}
@@ -21,15 +23,15 @@ public class ApplicationBuilder {
 		model.addArtifact(artifactGenerator);
 	}
 
+    public ApplicationGenerator getGenerator() {
+        return new ApplicationGenerator(model);
+    }
+
 	protected String getNamespace() {
-		return MavenConstants.GROUP_ID + model.getName().toLowerCase();
+		return MavenConstants.Pom.GROUP_ID + model.getName().toLowerCase();
 	}
 
-	public ApplicationGenerator getGenerator() {
-		return new ApplicationGenerator(model);
-	}
-
-	protected ApplicationModel getModel() {
+	public ApplicationModel getModel() {
 		return model;
 	}
 

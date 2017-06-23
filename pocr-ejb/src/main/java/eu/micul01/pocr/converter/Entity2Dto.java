@@ -17,26 +17,17 @@ public class Entity2Dto {
 		final FormDto dto = new FormDto(form.getName());
 		final List<FieldDto> fields = new ArrayList<FieldDto>();
 		for (final FieldEntity field : form.getFields()) {
-			fields.add(convert2FiedlDto(field));
+			fields.add(convert2FieldDto(field));
 		}
 		dto.setFields(fields);
 
 		return dto;
 	}
 
-	public static FieldDto convert2FiedlDto(final FieldEntity field)
+	public static FieldDto convert2FieldDto(final FieldEntity field)
 			throws ClassNotFoundException {
-		final FieldDto dto = new FieldDto();
-		dto.setName(field.getName());
-		dto.setRequired(field.isRequired());
-		dto.setType(Class.forName(field.getType().getClassName()));
-		return dto;
-	}
-
-	public static void main(final String[] s) throws ClassNotFoundException {
-		System.out.println(int.class.getPackage());
-
-		System.out.println(Class.forName("int").toString());
-
+		return new FieldDto(field.getName(),
+				Class.forName(field.getType().getClassName()),
+				field.isRequired());
 	}
 }

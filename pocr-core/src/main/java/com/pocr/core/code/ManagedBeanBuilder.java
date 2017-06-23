@@ -15,38 +15,22 @@ public class ManagedBeanBuilder {
 
 	private final BeanModel model;
 
-	/**
-	 *
-	 * @param packageName
-	 *            the package name
-	 * @param className
-	 *            the unqualified managed bean name
-	 * @throws PocrException
-	 *             on class creation errors
-	 */
-	public ManagedBeanBuilder(final String packageName, final String className) {
+	public ManagedBeanBuilder(final String packageName, final String unqualifiedClassName) {
 		try {
-			model = new BeanModel(getQualifiedName(packageName, className));
+			model = new BeanModel(getQualifiedName(packageName, unqualifiedClassName));
 			model.addAnnotation(ManagedBean.class).param(MANAGED_BEAN_NAME,
-					className.toLowerCase());
+					unqualifiedClassName.toLowerCase());
 			model.addAnnotation(SessionScoped.class);
 		} catch (final JClassAlreadyExistsException e) {
-			throw new PocrException(
-					"An error occured at managed bean creation", e);
+			throw new PocrException("An error occured at managed bean creation", e);
 		}
 	}
 
 	private String getQualifiedName(final String packageName,
 			final String className) {
-		// TODO verify arguments
 		return packageName + PACKAGE_SEPARATOR + className;
 	}
 
-	/**
-	 *
-	 * @param name
-	 * @param type
-	 */
 	public void addProperty(final String name, final Class<?> type) {
 		validatePropertyName(name);
 		model.addField(name, type);
@@ -65,10 +49,6 @@ public class ManagedBeanBuilder {
 		}
 	}
 
-	/**
-	 *
-	 * @return a new managed bean generator object
-	 */
 	public Generator getGenerator() {
 		return new ManagedBeanGenerator(model);
 	}

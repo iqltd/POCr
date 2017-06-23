@@ -69,9 +69,6 @@ public class ApplicationBean implements Serializable {
 		String url = req.getRequestURL().toString();
 		url=(url.substring(0, url.length() - req.getRequestURI().length() + 1));
 		url=url+rootContext;
-		LOGGER.warn("run(). URL: " + url);
-		LOGGER.warn("run(). Contexr: " + req.getContextPath());
-		LOGGER.warn("run(). URI: " + req.getRequestURI());
 
 		RequestContext.getCurrentInstance().execute("window.open('"+url+"','_blank')");
 	}

@@ -1,5 +1,6 @@
 package com.pocr.core.dto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class FormDto {
@@ -10,7 +11,7 @@ public class FormDto {
 
 	private final String formName;
 
-	private List<FieldDto> fields;
+	private List<FieldDto> fields = new ArrayList<>();
 
 	public List<FieldDto> getFields() {
 		return fields;

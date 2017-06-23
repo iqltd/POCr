@@ -4,21 +4,20 @@ import java.io.Serializable;
 
 public class FieldDto implements Serializable {
 
-	/**
-	 *
-	 */
 	private static final long serialVersionUID = 1084704123809290784L;
-
-	public FieldDto() {
-	}
 
 	public FieldDto(final String name, final Class<?> type) {
 		this.name = name;
 		this.type = type;
 	}
 
+	public FieldDto(final String name, final Class<?> type, final boolean required) {
+		this(name, type);
+		this.required = required;
+	}
+
 	private String name;
-	private Class<?> type;
+	private  Class<?> type;
 	private boolean visible;
 	private boolean required;
 

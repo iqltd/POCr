@@ -10,9 +10,10 @@ import org.apache.maven.model.io.xpp3.MavenXpp3Writer;
 
 import com.pocr.core.application.Generator;
 
+import static com.pocr.core.constants.MavenConstants.Pom;
+
 public class PomGenerator implements Generator {
 
-	private static final String INTRA_PROJECT_PATH = "pom.xml";
 	private final Model model;
 
 	public PomGenerator(final Model model) {
@@ -24,7 +25,7 @@ public class PomGenerator implements Generator {
 	}
 
 	public String getRelativePath() {
-		return INTRA_PROJECT_PATH;
+		return Pom.FILE_NAME;
 	}
 
 	public void writeInFolder(final File folder) throws IOException {
