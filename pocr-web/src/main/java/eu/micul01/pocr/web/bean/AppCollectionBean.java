@@ -1,5 +1,9 @@
 package eu.micul01.pocr.web.bean;
 
+import eu.micul01.pocr.ejb.DbBean;
+import eu.micul01.pocr.ejb.PocrBean;
+import eu.micul01.pocr.entity.ApplicationEntity;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,9 +13,6 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
-import eu.micul01.pocr.ejb.DbBean;
-import eu.micul01.pocr.ejb.PocrBean;
-import eu.micul01.pocr.entity.ApplicationEntity;
 
 @ManagedBean(name = "appCollectionBean")
 @SessionScoped

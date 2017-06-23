@@ -9,13 +9,16 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
 
 import eu.micul01.pocr.ejb.PocrBean;
 import eu.micul01.pocr.entity.ApplicationEntity;
 import eu.micul01.pocr.entity.FormEntity;
+import org.primefaces.context.RequestContext;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 
 @ManagedBean(name = "appBean")
 @ViewScoped
@@ -24,9 +27,6 @@ public class ApplicationBean implements Serializable {
 	private static final Logger LOGGER = LoggerFactory
 			.getLogger(ApplicationBean.class);
 
-	/**
-	 *
-	 */
 	private static final long serialVersionUID = 1L;
 	private ApplicationEntity model;
 	private boolean deployed;
@@ -64,9 +64,21 @@ public class ApplicationBean implements Serializable {
 
 	}
 
+	public void openApplication(String rootContext) {
+		HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+		String url = req.getRequestURL().toString();
+		url=(url.substring(0, url.length() - req.getRequestURI().length() + 1));
+		url=url+rootContext;
+		LOGGER.warn("run(). URL: " + url);
+		LOGGER.warn("run(). Contexr: " + req.getContextPath());
+		LOGGER.warn("run(). URI: " + req.getRequestURI());
+
+		RequestContext.getCurrentInstance().execute("window.open('"+url+"','_blank')");
+	}
+
 	public void run() {
 		LOGGER.info("run(). Run requested for application " + model.getName());
-
+		openApplication(model.getName());
 	}
 
 	public void addForm(final FormEntity form) {

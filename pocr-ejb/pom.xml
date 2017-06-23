@@ -5,7 +5,7 @@
 	<parent>
 		<artifactId>POCr</artifactId>
 		<groupId>eu.micul01.pocr</groupId>
-		<version>1.1</version>
+		<version>1.2</version>
 	</parent>
 
 	<artifactId>pocr-ejb</artifactId>
@@ -21,30 +21,27 @@
 		<dependency>
 			<groupId>eu.micul01.pocr</groupId>
 			<artifactId>pocr-core</artifactId>
-			<scope>provided</scope>
 		</dependency>
-	
+
 		<dependency>
 			<groupId>javax</groupId>
 			<artifactId>javaee-api</artifactId>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.eclipse.persistence</groupId>
-			<artifactId>eclipselink</artifactId>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.eclipse.persistence</groupId>
-			<artifactId>javax.persistence</artifactId>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.derby</groupId>
 			<artifactId>derby</artifactId>
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
 

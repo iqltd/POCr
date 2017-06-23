@@ -5,9 +5,9 @@ import java.io.IOException;
 
 import javax.ejb.Stateless;
 
-import com.test.pocr.application.ApplicationDeployer;
-import com.test.pocr.dto.FormDto;
-import com.test.pocr.facelet.JsfApplicationBuilder;
+import com.pocr.core.application.ApplicationDeployer;
+import com.pocr.core.dto.FormDto;
+import com.pocr.core.facelet.JsfApplicationBuilder;
 
 import eu.micul01.pocr.converter.Entity2Dto;
 import eu.micul01.pocr.entity.ApplicationEntity;

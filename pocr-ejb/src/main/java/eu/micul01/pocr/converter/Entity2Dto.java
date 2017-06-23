@@ -3,8 +3,8 @@ package eu.micul01.pocr.converter;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.test.pocr.dto.FieldDto;
-import com.test.pocr.dto.FormDto;
+import com.pocr.core.dto.FieldDto;
+import com.pocr.core.dto.FormDto;
 
 import eu.micul01.pocr.entity.FieldEntity;
 import eu.micul01.pocr.entity.FormEntity;

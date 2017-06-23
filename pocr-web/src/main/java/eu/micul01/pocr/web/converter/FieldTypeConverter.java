@@ -7,10 +7,10 @@ import javax.faces.convert.Converter;
 import javax.faces.convert.ConverterException;
 import javax.faces.convert.FacesConverter;
 
+import eu.micul01.pocr.entity.TypeEntity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import eu.micul01.pocr.entity.TypeEntity;
 
 @FacesConverter("fieldTypeConverter")
 public class FieldTypeConverter implements Converter {

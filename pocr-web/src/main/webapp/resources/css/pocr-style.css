@@ -43,7 +43,8 @@ html, body {
 	background-color: #3399FF;
 	width: 100%;
 	color: #fff;
-	font-weight: 700;
+	font-weight: 500;
+	font-size: 0.6em;
 	text-align: center;
 }
 
@@ -73,14 +74,14 @@ html, body {
 .message {
     color: #2288DD;
     font-family: Verdana;
-    font-size: 16px;
+    font-size: 0.9em;
     font-weight: 600;
     text-shadow: 1px 1px 1px #ccc;
 }
 
 .cmdLink {
     font-family: Verdana;
-    font-size: 16px;
+    font-size: 0.9em;
     text-decoration: none;
 }
 
@@ -88,7 +89,12 @@ html, body {
 	text-decoration: underline;
 }
 
-
 dd {
 	margin: 0;
+}
+
+h4 {
+    color: #333333;
+    font-family: Sans-Serif;
+    font-size: 0.8em;
 }

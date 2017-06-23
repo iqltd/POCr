@@ -24,7 +24,7 @@ public class LanguageBean implements Serializable {
 
 	@PostConstruct
 	public void init() {
-		localeCode = "ro_RO";
+		localeCode = "en";
 	}
 
 	private static Map<String, Object> countries;
@@ -46,12 +46,10 @@ public class LanguageBean implements Serializable {
 		this.localeCode = localeCode;
 	}
 
-	// value change event listener
 	public void countryLocaleCodeChanged(final ValueChangeEvent e) {
 
 		final String newLocaleValue = e.getNewValue().toString();
 
-		// loop country map to compare the locale code
 		for (final Map.Entry<String, Object> entry : countries.entrySet()) {
 
 			if (entry.getValue().toString().equals(newLocaleValue)) {

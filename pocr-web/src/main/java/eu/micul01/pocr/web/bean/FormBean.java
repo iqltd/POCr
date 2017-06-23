@@ -1,7 +1,5 @@
 package eu.micul01.pocr.web.bean;
 
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -9,11 +7,14 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.faces.event.ActionEvent;
 
+import eu.micul01.pocr.entity.FieldEntity;
+import eu.micul01.pocr.entity.FormEntity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import eu.micul01.pocr.entity.FieldEntity;
-import eu.micul01.pocr.entity.FormEntity;
+import java.util.ArrayList;
+import java.util.List;
+
 
 @ManagedBean(name = "formBean")
 @ViewScoped
