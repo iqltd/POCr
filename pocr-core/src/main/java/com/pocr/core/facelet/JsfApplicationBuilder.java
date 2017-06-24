@@ -1,7 +1,7 @@
 package com.pocr.core.facelet;
 
 import com.pocr.core.artifact.ArtifactWriter;
-import com.pocr.core.code.ManagedBeanBuilder;
+import com.pocr.core.code.ManagedBeanArtifactBuilder;
 import com.pocr.core.dto.FieldDto;
 import com.pocr.core.dto.FormDto;
 import com.pocr.core.mvn.DependencyBuilder;
@@ -58,13 +58,13 @@ public class JsfApplicationBuilder extends WebApplicationBuilder {
 	}
 
 	private void addManagedBean(final FormDto form) {
-		final ManagedBeanBuilder builder = new ManagedBeanBuilder(
+		final ManagedBeanArtifactBuilder builder = new ManagedBeanArtifactBuilder(
 				getNamespace(), form.getFormName());
 		for (final FieldDto field : form.getFields()) {
 			builder.addProperty(field.getName(), field.getType());
 		}
 
-		//addArtifact(builder.getGenerator());
+		//addArtifact(builder.getArtifactWriter());
 
 	}
 }

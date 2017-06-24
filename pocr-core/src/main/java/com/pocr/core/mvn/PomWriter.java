@@ -28,7 +28,7 @@ public class PomWriter implements ArtifactWriter {
 		return Pom.FILE_NAME;
 	}
 
-	public void writeInFolder(final File folder) throws IOException {
+	public void writeOnDisk(final File folder) throws IOException {
 		final File fullPath = new File(folder, getRelativePath());
 		final Writer w = new PrintWriter(fullPath);
 		new MavenXpp3Writer().write(w, model);

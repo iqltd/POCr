@@ -4,6 +4,6 @@ public interface Artifact {
 
     String getPath();
 
-    ArtifactWriter getGenerator();
+    ArtifactWriter getArtifactWriter();
 
 }

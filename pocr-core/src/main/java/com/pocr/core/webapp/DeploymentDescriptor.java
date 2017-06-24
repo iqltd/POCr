@@ -20,7 +20,7 @@ public class DeploymentDescriptor implements Artifact {
     }
 
     @Override
-    public ArtifactWriter getGenerator() {
+    public ArtifactWriter getArtifactWriter() {
         return new DeploymentDescriptorWriter(model);
     }
 }

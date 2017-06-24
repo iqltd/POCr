@@ -40,7 +40,7 @@ public class JsfApplicationBuilderTest {
 //        boolean mbFound = false;
 //
 //        for (ArtifactWriter gen: builder.getModel().getArtifacts()) {
-//            if (gen instanceof ManagedBeanWriter) mbFound = true;
+//            if (gen instanceof SourceCodeWriter) mbFound = true;
 //            if (gen instanceof PageWriter) pageFound = true;
 //        }
 //        Assert.assertTrue(pageFound && mbFound);

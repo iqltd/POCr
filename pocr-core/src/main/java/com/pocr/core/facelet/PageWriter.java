@@ -27,7 +27,7 @@ public class PageWriter implements ArtifactWriter {
 		return PAGES_BASEDIR + name + EXTENSION;
 	}
 
-	public void writeInFolder(final File folder) throws IOException {
+	public void writeOnDisk(final File folder) throws IOException {
 		final XMLOutputter xml = new XMLOutputter();
 		xml.setFormat(Format.getPrettyFormat());
 		final File page = new File(folder, getRelativePath());

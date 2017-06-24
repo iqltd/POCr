@@ -10,6 +10,6 @@ public interface ArtifactWriter {
 	 *
 	 * @param folder the directory where the artifact will be written on disk
 	 */
-	void writeInFolder(File folder) throws IOException;
+	void writeOnDisk(File folder) throws IOException;
 
 }

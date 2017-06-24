@@ -22,7 +22,7 @@ public class PomArtifact implements Artifact {
     }
 
     @Override
-    public ArtifactWriter getGenerator() {
+    public ArtifactWriter getArtifactWriter() {
         return new PomWriter(model);
     }
 }

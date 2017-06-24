@@ -38,7 +38,9 @@ public class ApplicationGenerator {
 			throws IOException {
 
 		for (final Artifact artifact : artifacts) {
-			artifact.getGenerator().writeInFolder(outputFolder);
+			File target = new File(outputFolder, artifact.getPath());
+			target.mkdirs();
+			artifact.getArtifactWriter().writeOnDisk(target);
 		}
 	}
 

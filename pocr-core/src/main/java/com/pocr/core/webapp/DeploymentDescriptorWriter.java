@@ -26,7 +26,7 @@ public class DeploymentDescriptorWriter implements ArtifactWriter {
 		return Path.DD;
 	}
 
-	public void writeInFolder(final File folder) throws IOException, PocrException {
+	public void writeOnDisk(final File folder) throws IOException, PocrException {
 		final File fullpath = new File(folder, getRelativePath());
 		try {
 			fullpath.getParentFile().mkdirs();
