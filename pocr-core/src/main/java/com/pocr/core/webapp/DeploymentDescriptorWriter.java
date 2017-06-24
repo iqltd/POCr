@@ -6,20 +6,19 @@ import java.io.IOException;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
-import javax.xml.bind.PropertyException;
 
 import org.jcp.xmlns.xml.ns.javaee.WebAppType;
 
-import com.pocr.core.application.Generator;
+import com.pocr.core.artifact.ArtifactWriter;
 import com.pocr.core.exception.PocrException;
 
 import static com.pocr.core.constants.WebappConstants.*;
 
-public class DeploymentDescriptorGenerator implements Generator {
+public class DeploymentDescriptorWriter implements ArtifactWriter {
 
 	private final WebAppType model;
 
-	public DeploymentDescriptorGenerator(final WebAppType model) {
+	public DeploymentDescriptorWriter(final WebAppType model) {
 		this.model = model;
 	}
 

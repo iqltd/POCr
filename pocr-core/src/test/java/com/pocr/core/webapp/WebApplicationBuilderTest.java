@@ -1,24 +1,32 @@
 package com.pocr.core.webapp;
 
+import com.pocr.core.application.Application;
+import com.pocr.core.application.ApplicationBuilder;
 import org.junit.Assert;
 import org.junit.Test;
 
 public class WebApplicationBuilderTest {
 
-	@Test
-	public void instantiate_withValidName_success() {
-		final WebApplicationBuilder builder = new WebApplicationBuilder("test");
+    private static final String VALID_NAME = "testName";
 
-        Assert.assertTrue(builder.getModel() != null);
+    @Test
+	public void build_nominal() {
+		ApplicationBuilder builder = new WebApplicationBuilder(VALID_NAME);
+        Application application = builder.build();
+
+        Assert.assertNotNull(application);
+        Assert.assertEquals(VALID_NAME, application.name);
 	}
 
     @Test
-    public void instantiate_withValidName_ddGeneratorAddedByDefault() {
-        final WebApplicationBuilder builder = new WebApplicationBuilder("test");
+    public void build_nominal_ddGeneratorAddedByDefault() {
+        ApplicationBuilder builder = new WebApplicationBuilder(VALID_NAME);
+        Application application = builder.build();
 
-        Assert.assertTrue(builder.getModel() != null);
-        Assert.assertEquals(2, builder.getModel().getArtifacts().size());
-        Assert.assertTrue(builder.getModel().getArtifacts().get(1) instanceof DeploymentDescriptorGenerator);
+        Assert.assertNotNull(application);
+        Assert.assertNotNull(application.artifacts);
+        Assert.assertEquals(2, application.artifacts.size());
+        Assert.assertTrue(application.artifacts.get(1) instanceof DeploymentDescriptor);
     }
 
 }

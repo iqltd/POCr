@@ -1,14 +1,9 @@
-package com.pocr.core.application;
+package com.pocr.core.artifact;
 
 import java.io.File;
 import java.io.IOException;
 
-public interface Generator {
-
-	/**
-	 * @return the relative file path where this artifact will be written
-	 */
-	String getRelativePath();
+public interface ArtifactWriter {
 
 	/**
 	 * Performs the file generation on the disk.

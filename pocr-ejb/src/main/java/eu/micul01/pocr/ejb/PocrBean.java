@@ -6,6 +6,7 @@ import java.io.IOException;
 import javax.ejb.Stateless;
 
 import com.pocr.core.application.ApplicationDeployer;
+import com.pocr.core.application.ApplicationGenerator;
 import com.pocr.core.dto.FormDto;
 import com.pocr.core.facelet.JsfApplicationBuilder;
 
@@ -23,11 +24,11 @@ public class PocrBean {
 				app.getName());
 
 		final FormEntity form = app.getForms().get(0);
+		builder.addForm(Entity2Dto.convert2FormDto(form));
 
-		final FormDto formDto = Entity2Dto.convert2FormDto(form);
-		builder.addForm(formDto);
+		ApplicationGenerator generator = new ApplicationGenerator(builder.build());
+		final File outputFolder = generator.generateApplication();
 
-		final File outputFolder = builder.getGenerator().generateApplication();
 		ApplicationDeployer deployer = new ApplicationDeployer(outputFolder);
 		deployer.deployApplication();
 

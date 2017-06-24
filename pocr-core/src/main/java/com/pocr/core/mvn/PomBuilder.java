@@ -1,6 +1,7 @@
 package com.pocr.core.mvn;
 
-import com.pocr.core.application.Generator;
+import com.pocr.core.artifact.ArtifactBuilder;
+import com.pocr.core.artifact.ArtifactWriter;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.maven.model.Build;
 import org.apache.maven.model.Dependency;
@@ -10,7 +11,7 @@ import org.apache.maven.model.Plugin;
 import static com.pocr.core.constants.MavenConstants.Pom;
 import static com.pocr.core.constants.MavenConstants.Compiler;
 
-public class PomBuilder {
+public class PomBuilder implements ArtifactBuilder {
 
 	private final Model model = new Model();
 
@@ -45,8 +46,12 @@ public class PomBuilder {
 				.build();
 	}
 
-	public Generator getGenerator() {
-		return new PomGenerator(model);
+	public ArtifactWriter getGenerator() {
+		return new PomWriter(model);
+	}
+
+	public PomArtifact getArtifact() {
+		return new PomArtifact(model);
 	}
 
 	public Model getPomModel() {

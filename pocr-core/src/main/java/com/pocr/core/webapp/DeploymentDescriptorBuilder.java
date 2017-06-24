@@ -7,7 +7,9 @@ import java.util.Set;
 
 import javax.xml.bind.JAXBElement;
 
-import com.pocr.core.application.Generator;
+import com.pocr.core.artifact.Artifact;
+import com.pocr.core.artifact.ArtifactBuilder;
+import com.pocr.core.artifact.ArtifactWriter;
 import org.jcp.xmlns.xml.ns.javaee.FullyQualifiedClassType;
 import org.jcp.xmlns.xml.ns.javaee.ObjectFactory;
 import org.jcp.xmlns.xml.ns.javaee.ServletMappingType;
@@ -20,7 +22,7 @@ import org.jcp.xmlns.xml.ns.javaee.WelcomeFileListType;
 import com.pocr.core.util.Util;
 import static com.pocr.core.constants.WebappConstants.*;
 
-public class DeploymentDescriptorBuilder {
+public class DeploymentDescriptorBuilder implements ArtifactBuilder {
 
 	private final WebAppType model = new WebAppType();
 	private final ObjectFactory factory = new ObjectFactory();
@@ -31,8 +33,12 @@ public class DeploymentDescriptorBuilder {
 		model.setVersion(Schema.VERSION);
 	}
 
-	public Generator getGenerator() {
-		return new DeploymentDescriptorGenerator(model);
+	public ArtifactWriter getGenerator() {
+		return new DeploymentDescriptorWriter(model);
+	}
+
+	public Artifact getArtifact() {
+		return new DeploymentDescriptor(model);
 	}
 
 	public void addWelcomePage(final String page) {

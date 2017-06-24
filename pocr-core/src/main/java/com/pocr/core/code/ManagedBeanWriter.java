@@ -3,14 +3,14 @@ package com.pocr.core.code;
 import java.io.File;
 import java.io.IOException;
 
-import com.pocr.core.application.Generator;
+import com.pocr.core.artifact.ArtifactWriter;
 
-public class ManagedBeanGenerator implements Generator {
+public class ManagedBeanWriter implements ArtifactWriter {
 
 	private final BeanModel model;
 	private final static String INTRA_PROJECT_PATH = "src/main/java/";
 
-	ManagedBeanGenerator(final BeanModel model) {
+	ManagedBeanWriter(final BeanModel model) {
 		this.model = model;
 	}
 

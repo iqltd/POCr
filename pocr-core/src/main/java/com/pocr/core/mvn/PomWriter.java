@@ -8,15 +8,15 @@ import java.io.Writer;
 import org.apache.maven.model.Model;
 import org.apache.maven.model.io.xpp3.MavenXpp3Writer;
 
-import com.pocr.core.application.Generator;
+import com.pocr.core.artifact.ArtifactWriter;
 
 import static com.pocr.core.constants.MavenConstants.Pom;
 
-public class PomGenerator implements Generator {
+public class PomWriter implements ArtifactWriter {
 
 	private final Model model;
 
-	public PomGenerator(final Model model) {
+	public PomWriter(final Model model) {
 		this.model = model;
 	}
 

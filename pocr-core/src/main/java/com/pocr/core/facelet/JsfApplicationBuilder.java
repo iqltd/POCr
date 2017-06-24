@@ -1,6 +1,6 @@
 package com.pocr.core.facelet;
 
-import com.pocr.core.application.Generator;
+import com.pocr.core.artifact.ArtifactWriter;
 import com.pocr.core.code.ManagedBeanBuilder;
 import com.pocr.core.dto.FieldDto;
 import com.pocr.core.dto.FormDto;
@@ -48,8 +48,8 @@ public class JsfApplicationBuilder extends WebApplicationBuilder {
 			facesPageBuilder.addComponent(beanName, field);
 		}
 
-		final Generator generator = facesPageBuilder.getGenerator();
-		addArtifact(generator);
+		final ArtifactWriter generator = facesPageBuilder.getGenerator();
+		//addArtifact(generator);
 
 		if (indexPage == null) {
 			indexPage = DD.PATTERN.replace("*", form.getFormName());
@@ -64,7 +64,7 @@ public class JsfApplicationBuilder extends WebApplicationBuilder {
 			builder.addProperty(field.getName(), field.getType());
 		}
 
-		addArtifact(builder.getGenerator());
+		//addArtifact(builder.getGenerator());
 
 	}
 }

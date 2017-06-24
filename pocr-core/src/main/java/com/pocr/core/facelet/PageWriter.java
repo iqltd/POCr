@@ -9,16 +9,16 @@ import org.jdom2.Document;
 import org.jdom2.output.Format;
 import org.jdom2.output.XMLOutputter;
 
-import com.pocr.core.application.Generator;
+import com.pocr.core.artifact.ArtifactWriter;
 
 import static com.pocr.core.constants.JsfConstants.Path.*;
 
-public class PageGenerator implements Generator {
+public class PageWriter implements ArtifactWriter {
 
 	private final Document model;
 	private final String name;
 
-	public PageGenerator(final String name, final Document jdomDoc) {
+	public PageWriter(final String name, final Document jdomDoc) {
 		model = jdomDoc;
 		this.name = name;
 	}

@@ -2,7 +2,7 @@ package com.pocr.core.facelet;
 
 import java.io.Serializable;
 
-import com.pocr.core.application.Generator;
+import com.pocr.core.artifact.ArtifactWriter;
 import com.pocr.core.dto.FieldDto;
 import com.pocr.core.util.JdomUtil;
 import org.jdom2.Attribute;
@@ -32,7 +32,7 @@ public class PageBuilder implements Serializable {
 		return name;
 	}
 
-	public Generator getGenerator() {
+	public ArtifactWriter getGenerator() {
 		final Element composition = new Element("composition",
 				JdomUtil.getNamespace(NamespaceEnum.FACELETS));
 		composition.setAttribute(new Attribute("template", "template.xhtml"));
@@ -48,6 +48,6 @@ public class PageBuilder implements Serializable {
 		define.setAttribute("name", "actualForm");
 		composition.addContent(define);
 
-		return new PageGenerator(name, jdomDoc);
+		return new PageWriter(name, jdomDoc);
 	}
 }

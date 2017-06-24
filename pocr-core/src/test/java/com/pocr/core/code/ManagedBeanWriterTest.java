@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import com.sun.codemodel.JClassAlreadyExistsException;
 
-public class ManagedBeanGeneratorTest {
+public class ManagedBeanWriterTest {
 
 	private ManagedBeanBuilder builder;
 

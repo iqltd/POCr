@@ -11,7 +11,8 @@ public class WebApplicationBuilder extends ApplicationBuilder {
 	public WebApplicationBuilder(final String name) {
 		super(name);
 		ddBuilder = new DeploymentDescriptorBuilder(name);
-		addArtifact(ddBuilder.getGenerator());
+		addSpecificBuilder(ddBuilder);
+
 		getPomBuilder().setPackaging(PACKAGING);
 		getPomBuilder().addBuildPlugin(WildflyMavenPluginHelper.getWlsPlugin());
 	}
@@ -19,6 +20,7 @@ public class WebApplicationBuilder extends ApplicationBuilder {
 	protected DeploymentDescriptorBuilder getDdBuilder() {
 		return ddBuilder;
 	}
+
 
 
 }

@@ -3,7 +3,7 @@ package com.pocr.core.code;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
-import com.pocr.core.application.Generator;
+import com.pocr.core.artifact.ArtifactWriter;
 import com.pocr.core.exception.PocrException;
 import com.sun.codemodel.JClassAlreadyExistsException;
 import com.sun.codemodel.JJavaName;
@@ -49,8 +49,8 @@ public class ManagedBeanBuilder {
 		}
 	}
 
-	public Generator getGenerator() {
-		return new ManagedBeanGenerator(model);
+	public ArtifactWriter getGenerator() {
+		return new ManagedBeanWriter(model);
 	}
 
 	protected BeanModel getModel() {
