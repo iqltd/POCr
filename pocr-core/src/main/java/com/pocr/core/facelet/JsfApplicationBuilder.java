@@ -1,16 +1,15 @@
 package com.pocr.core.facelet;
 
 import com.pocr.core.application.Generator;
-import com.pocr.core.constants.JsfConstants;
-import com.pocr.core.dto.FormDto;
-import org.apache.maven.model.Dependency;
-
 import com.pocr.core.code.ManagedBeanBuilder;
 import com.pocr.core.dto.FieldDto;
-import com.pocr.core.util.DependencyUtil;
+import com.pocr.core.dto.FormDto;
+import com.pocr.core.mvn.DependencyBuilder;
 import com.pocr.core.webapp.WebApplicationBuilder;
+import org.apache.maven.model.Dependency;
 
-import static com.pocr.core.constants.JsfConstants.*;
+import static com.pocr.core.constants.JsfConstants.DD;
+import static com.pocr.core.constants.JsfConstants.Maven;
 
 public class JsfApplicationBuilder extends WebApplicationBuilder {
 
@@ -23,8 +22,12 @@ public class JsfApplicationBuilder extends WebApplicationBuilder {
 	}
 
 	private void addFacesApiDependency() {
-		final Dependency dependency = DependencyUtil.getScopedDependency(
-				Maven.GROUP_ID, Maven.ARTIFACT_ID, Maven.VERSION, Maven.SCOPE);
+		final Dependency dependency = DependencyBuilder.getInstance()
+				.setGroupId(Maven.GROUP_ID)
+				.setArtifactId(Maven.ARTIFACT_ID)
+				.setVersion(Maven.VERSION)
+				.setScope(Maven.SCOPE)
+				.build();
 		getPomBuilder().addDependency(dependency);
 	}
 

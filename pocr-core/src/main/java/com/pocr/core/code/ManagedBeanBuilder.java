@@ -22,7 +22,7 @@ public class ManagedBeanBuilder {
 					unqualifiedClassName.toLowerCase());
 			model.addAnnotation(SessionScoped.class);
 		} catch (final JClassAlreadyExistsException e) {
-			throw new PocrException("An error occured at managed bean creation", e);
+			throw new PocrException("An error occurred at managed bean creation", e);
 		}
 	}
 

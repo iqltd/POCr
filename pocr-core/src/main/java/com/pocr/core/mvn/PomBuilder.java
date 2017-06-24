@@ -1,11 +1,6 @@
 package com.pocr.core.mvn;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import com.pocr.core.application.Generator;
-import com.pocr.core.util.PluginUtil;
-import com.sun.org.apache.xalan.internal.xsltc.cmdline.Compile;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.maven.model.Build;
 import org.apache.maven.model.Dependency;
@@ -22,18 +17,7 @@ public class PomBuilder {
 	public PomBuilder(final String artifactName) {
 		initModel(artifactName);
 		model.setBuild(getBuild(artifactName));
-	}
-
-	private Build getBuild(String artifactName) {
-		final Build build = new Build();
-		final Map<String, String> configurationMap = new HashMap<String, String>();
-		configurationMap.put(Compiler.SOURCE, Compiler.JAVA_SRC_VERSION);
-		configurationMap.put(Compiler.TARGET, Compiler.JAVA_TARGET_VERSION);
-		build.addPlugin(PluginUtil.getPluginWithConfiguration(
-				Compiler.GROUP_ID, Compiler.ARTIFACT_ID, Compiler.VERSION,
-				configurationMap));
-		build.setFinalName(artifactName);
-		return build;
+		model.getBuild().addPlugin(getCompilerPlugin());
 	}
 
 	private void initModel(String artifactName) {
@@ -42,6 +26,23 @@ public class PomBuilder {
 				: artifactName);
 		model.setVersion(Pom.VERSION);
 		model.setModelVersion(Pom.MODEL_VERSION);
+	}
+
+	private Build getBuild(String artifactName) {
+		final Build build = new Build();
+		build.setFinalName(artifactName);
+		return build;
+	}
+
+
+	private Plugin getCompilerPlugin() {
+		return PluginBuilder.getInstance()
+				.setGroupId(Compiler.GROUP_ID)
+				.setArtifactId(Compiler.ARTIFACT_ID)
+				.setVersion(Compiler.VERSION)
+				.addConfigurationProperty(Compiler.SOURCE, Compiler.JAVA_SRC_VERSION)
+				.addConfigurationProperty(Compiler.TARGET, Compiler.JAVA_TARGET_VERSION)
+				.build();
 	}
 
 	public Generator getGenerator() {
