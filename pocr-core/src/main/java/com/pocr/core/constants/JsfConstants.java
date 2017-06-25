@@ -24,9 +24,19 @@ public interface JsfConstants {
     interface Xhtml {
         String OUTPUT_LABEL_ELEM = "outputLabel";
         String INPUT_TEXT_ELEM = "inputText";
+        String COMPOSITION_ELEM = "composition";
+        String DEFINE_ELEM = "define";
+        String PARAM_ELEM = "param";
+        String TEMPLATE_ELEM = "template";
+
         String REQUIRED_ATTR = "required";
         String LABEL_ATTR = "label";
+        String NAME_ATTR = "name";
         String VALUE_ATTR = "value";
+        String PAGE_TITLE_ATTR = "pageTitle";
+
+        String TEMPLATE_LOCATION = "template.xhtml";
+        String DEFINE_NAME = "actualForm";
     }
 
 }

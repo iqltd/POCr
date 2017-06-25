@@ -41,15 +41,14 @@ public class JsfApplicationBuilder extends WebApplicationBuilder {
 	}
 
 	private void addPage(final FormDto form) {
-		final PageBuilder facesPageBuilder = new PageBuilder(form.getFormName());
+		final FaceletArtifactBuilder builder = new FaceletArtifactBuilder(form.getFormName());
 
 		for (final FieldDto field : form.getFields()) {
 			final String beanName = form.getFormName().toLowerCase();
-			facesPageBuilder.addComponent(beanName, field);
+			builder.addComponent(beanName, field);
 		}
 
-		final ArtifactWriter generator = facesPageBuilder.getGenerator();
-		//addArtifact(generator);
+		addArtifact(builder.getArtifact());
 
 		if (indexPage == null) {
 			indexPage = DD.PATTERN.replace("*", form.getFormName());
@@ -64,7 +63,7 @@ public class JsfApplicationBuilder extends WebApplicationBuilder {
 			builder.addProperty(field.getName(), field.getType());
 		}
 
-		//addArtifact(builder.getArtifactWriter());
+		addArtifact(builder.getArtifact());
 
 	}
 }

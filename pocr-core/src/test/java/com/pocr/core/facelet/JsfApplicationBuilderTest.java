@@ -2,6 +2,11 @@ package com.pocr.core.facelet;
 
 import com.pocr.core.application.Application;
 import com.pocr.core.application.ApplicationBuilder;
+import com.pocr.core.artifact.Artifact;
+import com.pocr.core.artifact.ArtifactWriter;
+import com.pocr.core.code.SourceCodeArtifact;
+import com.pocr.core.dto.FormDto;
+import com.pocr.core.webapp.DeploymentDescriptor;
 import com.pocr.core.webapp.WebApplicationBuilder;
 import org.junit.Assert;
 import org.junit.Test;
@@ -19,31 +24,24 @@ public class JsfApplicationBuilderTest {
         Assert.assertEquals(VALID_NAME, application.name);
     }
 
-//    @Test
-//    public void instantiate_withValidName_pomGeneratorAddedByDefault() {
-//        final JsfApplicationBuilder builder = new JsfApplicationBuilder("test");
-//
-//        Assert.assertTrue(builder.getModel() != null);
-//        Assert.assertEquals(2, builder.getModel().getArtifacts().size());
-//        Assert.assertTrue(builder.getModel().getArtifacts().get(1) instanceof DeploymentDescriptorWriter);
-//    }
-//
-//    @Test
-//    public void addForm_withValidName_addsPageAndBackingBean() {
-//        final JsfApplicationBuilder builder = new JsfApplicationBuilder("test");
-//
-//        builder.addForm(new FormDto("testForm"));
-//
-//        Assert.assertTrue(builder.getModel() != null);
-//        Assert.assertEquals(4, builder.getModel().getArtifacts().size());
-//        boolean pageFound = false;
-//        boolean mbFound = false;
-//
-//        for (ArtifactWriter gen: builder.getModel().getArtifacts()) {
-//            if (gen instanceof SourceCodeWriter) mbFound = true;
-//            if (gen instanceof PageWriter) pageFound = true;
-//        }
-//        Assert.assertTrue(pageFound && mbFound);
-//    }
+    @Test
+    public void addForm_nominal_addsPageAndBackingBean() {
+        final JsfApplicationBuilder builder = new JsfApplicationBuilder("test");
+        Application application = builder.build();
+
+        builder.addForm(new FormDto("testForm"));
+
+        Assert.assertNotNull(application);
+        Assert.assertNotNull(application.artifacts);
+        boolean pageFound = false;
+        boolean mbFound = false;
+
+        for (Artifact artifact: application.artifacts) {
+            if (artifact instanceof SourceCodeArtifact) mbFound = true;
+            if (artifact instanceof PageArtifact) pageFound = true;
+        }
+        Assert.assertTrue("Missing page artifact", pageFound);
+        Assert.assertTrue("Missing managed bean artifact", mbFound);
+    }
 
 }

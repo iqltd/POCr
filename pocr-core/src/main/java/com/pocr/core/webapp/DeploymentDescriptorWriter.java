@@ -22,16 +22,10 @@ public class DeploymentDescriptorWriter implements ArtifactWriter {
 		this.model = model;
 	}
 
-	public String getRelativePath() {
-		return Path.DD;
-	}
-
-	public void writeOnDisk(final File folder) throws IOException, PocrException {
-		final File fullpath = new File(folder, getRelativePath());
+	public void writeOnDisk(final File target) throws IOException, PocrException {
 		try {
-			fullpath.getParentFile().mkdirs();
-			fullpath.createNewFile();
-			getMarshaller().marshal(model, fullpath);
+			target.createNewFile();
+			getMarshaller().marshal(model, target);
 		} catch (final JAXBException e) {
 			throw new PocrException(
 					"Failure while marshalling the deployment descriptor.", e);

@@ -39,7 +39,7 @@ public class ApplicationGenerator {
 
 		for (final Artifact artifact : artifacts) {
 			File target = new File(outputFolder, artifact.getPath());
-			target.mkdirs();
+			target.getParentFile().mkdirs();
 			artifact.getArtifactWriter().writeOnDisk(target);
 		}
 	}

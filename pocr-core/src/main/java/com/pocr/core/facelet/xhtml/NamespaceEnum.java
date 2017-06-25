@@ -10,7 +10,7 @@ public enum NamespaceEnum {
 	private final String prefix;
 	private final String uri;
 
-	private NamespaceEnum(final String prefix, final String uri) {
+	NamespaceEnum(final String prefix, final String uri) {
 		this.prefix = prefix;
 		this.uri = uri;
 	}
