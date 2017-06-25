@@ -20,12 +20,9 @@ public class InputTextHelperTest {
 		Assert.assertEquals(2, input.getContentSize());
 
 		final Element inputText = input.getChildren().get(1);
-		Assert.assertEquals("fieldName",
-				inputText.getAttributeValue(LABEL_ATTR));
-		Assert.assertEquals("true",
-				inputText.getAttributeValue(REQUIRED_ATTR));
-		Assert.assertEquals("#{bean.fieldName}",
-				inputText.getAttributeValue(VALUE_ATTR));
+		Assert.assertEquals("fieldName", inputText.getAttributeValue(LABEL_ATTR));
+		Assert.assertEquals("true", inputText.getAttributeValue(REQUIRED_ATTR));
+		Assert.assertEquals("#{bean.fieldName}", inputText.getAttributeValue(VALUE_ATTR));
 
 	}
 }

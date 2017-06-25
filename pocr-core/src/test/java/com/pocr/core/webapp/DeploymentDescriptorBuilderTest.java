@@ -14,7 +14,7 @@ public class DeploymentDescriptorBuilderTest {
 
 	@BeforeClass
 	public static void init() {
-		ddBuilder = new DeploymentDescriptorBuilder(null);
+		ddBuilder = new DeploymentDescriptorBuilder();
 	}
 
 	@Test(expected = IllegalArgumentException.class)

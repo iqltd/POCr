@@ -1,4 +1,4 @@
-package com.pocr.core.facelet.xhtml;
+package com.pocr.core.facelet;
 
 public enum NamespaceEnum {
 	NO_NAMESPACE("", "http://www.w3.org/1999/xhtml"),

@@ -8,10 +8,6 @@ public class Util {
 
 	private static final String BLANK = "";
 
-	// Not to be instantiated
-	private Util() {
-		throw new AssertionError();
-	}
 
 	/**
 	 * Extracts the package name from a given qualified class name.

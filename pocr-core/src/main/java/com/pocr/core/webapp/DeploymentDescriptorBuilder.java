@@ -1,85 +1,41 @@
 package com.pocr.core.webapp;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
-import javax.xml.bind.JAXBElement;
-
-import com.pocr.core.artifact.Artifact;
-import com.pocr.core.artifact.ArtifactBuilder;
-import com.pocr.core.artifact.ArtifactWriter;
-import org.jcp.xmlns.xml.ns.javaee.FullyQualifiedClassType;
-import org.jcp.xmlns.xml.ns.javaee.ObjectFactory;
-import org.jcp.xmlns.xml.ns.javaee.ServletMappingType;
-import org.jcp.xmlns.xml.ns.javaee.ServletNameType;
-import org.jcp.xmlns.xml.ns.javaee.ServletType;
-import org.jcp.xmlns.xml.ns.javaee.UrlPatternType;
-import org.jcp.xmlns.xml.ns.javaee.WebAppType;
-import org.jcp.xmlns.xml.ns.javaee.WelcomeFileListType;
-
 import com.pocr.core.util.Util;
-import static com.pocr.core.constants.WebappConstants.*;
 
-public class DeploymentDescriptorBuilder implements ArtifactBuilder {
+import java.util.*;
 
-	private final WebAppType model = new WebAppType();
-	private final ObjectFactory factory = new ObjectFactory();
-	private final Set<String> servlets = new HashSet<>();
+public class DeploymentDescriptorBuilder {
 
-	public DeploymentDescriptorBuilder(final String id) {
-		model.setId(id);
-		model.setVersion(Schema.VERSION);
-	}
-
-	public ArtifactWriter getGenerator() {
-		return new DeploymentDescriptorWriter(model);
-	}
-
-	public Artifact getArtifact() {
-		return new DeploymentDescriptor(model);
-	}
+	private List<String> welcomePages = new ArrayList<>();
+	private List<Servlet> servlets = new ArrayList<>();
+	private Set<String> servletNames = new HashSet<>();
 
 	public void addWelcomePage(final String page) {
-		final WelcomeFileListType welcomeFiles = new WelcomeFileListType();
-		welcomeFiles.getWelcomeFile().add(page);
-		getListModules().add(
-				factory.createWebAppTypeWelcomeFileList(welcomeFiles));
+		welcomePages.add(page);
 	}
 
 	public void addServlet(final String qualifiedClassName, final String pattern) {
-		final List<String> patterns = new ArrayList<String>();
+		final List<String> patterns = new ArrayList<>();
 		patterns.add(pattern);
 		addServlet(qualifiedClassName, patterns);
 	}
 
-	public void addServlet(final String qualifiedClassName,
-			final List<String> patterns) {
-
+	public void addServlet(final String qualifiedClassName, final List<String> patterns) {
 		Util.validateQualifiedClassName(qualifiedClassName);
 		validatePatterns(patterns);
 
 		final String servletName = getServletName(Util
 				.extractClassFromQualifiedName(qualifiedClassName));
 
-		final ServletType servlet = getServlet(qualifiedClassName, servletName);
-		getListModules().add(factory.createWebAppTypeServlet(servlet));
-
-		for (final String pattern : patterns) {
-			final ServletMappingType servletMapping = getServletMapping(
-					pattern, servletName);
-			getListModules().add(
-					factory.createWebAppTypeServletMapping(servletMapping));
-		}
-		servlets.add(servletName);
+		servlets.add(new Servlet(servletName, qualifiedClassName, patterns));
+		servletNames.add(servletName);
 	}
 
 	private String getServletName(final String className) {
 		String servletName = className;
-		if (servlets.contains(className)) {
+		if (servletNames.contains(className)) {
 			int count = 1;
-			while (servlets.contains(className + count)) {
+			while (servletNames.contains(className + count)) {
 				count++;
 			}
 			servletName += count;
@@ -100,39 +56,23 @@ public class DeploymentDescriptorBuilder implements ArtifactBuilder {
 		}
 	}
 
-	private ServletType getServlet(final String className,
-			final String servletName) {
-		final ServletType servlet = factory.createServletType();
-
-		final ServletNameType nameType = new ServletNameType();
-		nameType.setValue(servletName);
-		servlet.setServletName(nameType);
-
-		final FullyQualifiedClassType classType = new FullyQualifiedClassType();
-		classType.setValue(className);
-		servlet.setServletClass(classType);
-
-		return servlet;
+	List<String> getWelcomePages() {
+		return Collections.unmodifiableList(welcomePages);
 	}
 
-	private ServletMappingType getServletMapping(final String pattern,
-			final String servletName) {
-		final ServletMappingType servletMapping = factory
-				.createServletMappingType();
-
-		final ServletNameType nameType = new ServletNameType();
-		nameType.setValue(servletName);
-		servletMapping.setServletName(nameType);
-
-		final UrlPatternType urlPattern = new UrlPatternType();
-		urlPattern.setValue(pattern);
-		servletMapping.getUrlPattern().add(urlPattern);
-
-		return servletMapping;
+	List<Servlet> getServlets() {
+		return Collections.unmodifiableList(servlets);
 	}
 
-	private List<JAXBElement<?>> getListModules() {
-		return model.getModuleNameOrDescriptionAndDisplayName();
-	}
+	public static class Servlet {
+		public Servlet(String servletName, String className, List<String> patterns) {
+			this.servletName = servletName;
+			this.className = className;
+			this.patterns = patterns;
+		}
 
+		final String servletName;
+		final String className;
+		final List<String> patterns;
+	}
 }

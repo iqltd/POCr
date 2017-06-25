@@ -45,7 +45,7 @@ public class ApplicationDeployer {
 	}
 
 	private static List<String> getGoals() {
-		String [] goals = {CLEAN, INSTALL, DEPLOY};
+		String [] goals = {CLEAN, PACKAGE, DEPLOY};
 		return Arrays.asList(goals);
 	}
 

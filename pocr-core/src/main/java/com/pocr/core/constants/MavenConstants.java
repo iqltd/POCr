@@ -23,14 +23,12 @@ public interface MavenConstants {
 
     interface Path {
         String SOURCES_BASEDIR = "src/main/";
-
+        String RESOURCES_BASEDIR = "src/resources/";
     }
 
     interface Goal {
         String CLEAN = "clean";
-        String INSTALL = "install";
+        String PACKAGE = "package";
         String DEPLOY = "wildfly:deploy";
     }
-
-
 }

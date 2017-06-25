@@ -5,7 +5,7 @@ import org.jdom2.Attribute;
 import org.jdom2.Element;
 
 import com.pocr.core.dto.FieldDto;
-import com.pocr.core.facelet.xhtml.NamespaceEnum;
+
 import static com.pocr.core.constants.JsfConstants.Xhtml.*;
 
 public class InputTextHelper {

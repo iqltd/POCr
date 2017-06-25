@@ -10,7 +10,7 @@ public class SourceCodeWriter implements ArtifactWriter {
 
 	private final JCodeModel model;
 
-	public SourceCodeWriter(final JCodeModel model) {
+	SourceCodeWriter(final JCodeModel model) {
 		this.model = model;
 	}
 

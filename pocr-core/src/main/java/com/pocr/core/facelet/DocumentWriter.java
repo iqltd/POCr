@@ -15,7 +15,7 @@ public class DocumentWriter implements ArtifactWriter {
 
 	private final Document model;
 
-	public DocumentWriter(final Document jdomDoc) {
+	DocumentWriter(final Document jdomDoc) {
 		model = jdomDoc;
 	}
 
@@ -25,5 +25,4 @@ public class DocumentWriter implements ArtifactWriter {
 		final OutputStream out = new FileOutputStream(target);
 		xml.output(model, out);
 	}
-
 }

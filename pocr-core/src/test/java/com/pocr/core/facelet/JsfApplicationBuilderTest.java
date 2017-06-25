@@ -3,10 +3,8 @@ package com.pocr.core.facelet;
 import com.pocr.core.application.Application;
 import com.pocr.core.application.ApplicationBuilder;
 import com.pocr.core.artifact.Artifact;
-import com.pocr.core.artifact.ArtifactWriter;
-import com.pocr.core.code.SourceCodeArtifact;
+import com.pocr.core.code.ManagedBeanArtifact;
 import com.pocr.core.dto.FormDto;
-import com.pocr.core.webapp.DeploymentDescriptor;
 import com.pocr.core.webapp.WebApplicationBuilder;
 import org.junit.Assert;
 import org.junit.Test;
@@ -37,8 +35,8 @@ public class JsfApplicationBuilderTest {
         boolean mbFound = false;
 
         for (Artifact artifact: application.artifacts) {
-            if (artifact instanceof SourceCodeArtifact) mbFound = true;
-            if (artifact instanceof PageArtifact) pageFound = true;
+            if (artifact instanceof ManagedBeanArtifact) mbFound = true;
+            if (artifact instanceof FaceletArtifact) pageFound = true;
         }
         Assert.assertTrue("Missing page artifact", pageFound);
         Assert.assertTrue("Missing managed bean artifact", mbFound);

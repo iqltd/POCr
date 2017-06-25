@@ -37,8 +37,7 @@ public class DeploymentDescriptorWriter implements ArtifactWriter {
 				.newInstance(WebAppType.class);
 		final Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
 
-		jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT,
-				Boolean.TRUE);
+		jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
 		jaxbMarshaller.setProperty(Marshaller.JAXB_SCHEMA_LOCATION,
 				Schema.JAVAEE_URI + Schema.WEBAPP_URI);
 		return jaxbMarshaller;

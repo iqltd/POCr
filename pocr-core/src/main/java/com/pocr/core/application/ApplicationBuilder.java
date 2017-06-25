@@ -1,8 +1,8 @@
 package com.pocr.core.application;
 
 import com.pocr.core.artifact.Artifact;
-import com.pocr.core.artifact.ArtifactBuilder;
 import com.pocr.core.exception.PocrException;
+import com.pocr.core.mvn.PomArtifact;
 import com.pocr.core.mvn.PomBuilder;
 
 import java.util.ArrayList;
@@ -14,17 +14,16 @@ import static com.pocr.core.constants.MavenConstants.Pom;
 public class ApplicationBuilder {
 
 	private final String applicationName;
-    private final PomBuilder pomBuilder;
+    private final PomArtifact pom;
     private final List<Artifact> artifacts = new ArrayList<>();
-    private final List<ArtifactBuilder> specificBuilders = new ArrayList<>();
 
 	public ApplicationBuilder(final String applicationName) {
 		if (applicationName == null || applicationName.isEmpty()) {
 			throw new PocrException("Cannot build an application without a name");
 		}
 		this.applicationName = applicationName;
-		this.pomBuilder = new PomBuilder(applicationName);
-        addSpecificBuilder(pomBuilder);
+		this.pom = new PomArtifact(applicationName);
+		this.artifacts.add(pom);
 	}
 
 	public void addArtifact(final Artifact artifact) {
@@ -36,22 +35,10 @@ public class ApplicationBuilder {
 	}
 
 	protected PomBuilder getPomBuilder() {
-		return pomBuilder;
-	}
-
-	/**
-	 * Allows subclasses to request the addition of a specific artifact
-	 * before the application is built (see build() method)
-	 */
-	protected final void addSpecificBuilder(ArtifactBuilder builder) {
-		specificBuilders.add(builder);
+		return pom.getBuilder();
 	}
 
 	public final Application build() {
-		for (ArtifactBuilder builder: specificBuilders) {
-			artifacts.add(builder.getArtifact());
-		}
 		return new Application(applicationName, artifacts);
 	}
-
 }

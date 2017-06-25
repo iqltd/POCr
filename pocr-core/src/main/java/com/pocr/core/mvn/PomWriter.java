@@ -16,22 +16,12 @@ public class PomWriter implements ArtifactWriter {
 
 	private final Model model;
 
-	public PomWriter(final Model model) {
+	PomWriter(final Model model) {
 		this.model = model;
 	}
 
-	public Model getModel() {
-		return model;
-	}
-
-	public String getRelativePath() {
-		return Pom.FILE_NAME;
-	}
-
-	public void writeOnDisk(final File folder) throws IOException {
-		final File fullPath = new File(folder, getRelativePath());
-		final Writer w = new PrintWriter(fullPath);
+	public void writeOnDisk(final File target) throws IOException {
+		final Writer w = new PrintWriter(target);
 		new MavenXpp3Writer().write(w, model);
 	}
-
 }

@@ -6,21 +6,19 @@ import static com.pocr.core.constants.WebappConstants.Maven.*;
 
 public class WebApplicationBuilder extends ApplicationBuilder {
 
-	private final DeploymentDescriptorBuilder ddBuilder;
+	private final DeploymentDescriptor dd;
 
 	public WebApplicationBuilder(final String name) {
 		super(name);
-		ddBuilder = new DeploymentDescriptorBuilder(name);
-		addSpecificBuilder(ddBuilder);
+		dd = new DeploymentDescriptor(name);
+		addArtifact(dd);
 
 		getPomBuilder().setPackaging(PACKAGING);
 		getPomBuilder().addBuildPlugin(WildflyMavenPluginHelper.getWlsPlugin());
 	}
 
 	protected DeploymentDescriptorBuilder getDdBuilder() {
-		return ddBuilder;
+		return dd.getBuilder();
 	}
-
-
 
 }

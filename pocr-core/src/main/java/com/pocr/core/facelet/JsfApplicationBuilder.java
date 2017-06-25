@@ -1,7 +1,7 @@
 package com.pocr.core.facelet;
 
-import com.pocr.core.artifact.ArtifactWriter;
-import com.pocr.core.code.ManagedBeanArtifactBuilder;
+import com.pocr.core.code.BeanBuilder;
+import com.pocr.core.code.ManagedBeanArtifact;
 import com.pocr.core.dto.FieldDto;
 import com.pocr.core.dto.FormDto;
 import com.pocr.core.mvn.DependencyBuilder;
@@ -41,14 +41,15 @@ public class JsfApplicationBuilder extends WebApplicationBuilder {
 	}
 
 	private void addPage(final FormDto form) {
-		final FaceletArtifactBuilder builder = new FaceletArtifactBuilder(form.getFormName());
+		FaceletArtifact artifact = new FaceletArtifact(form.getFormName());
 
+		final PageBuilder builder = artifact.getBuilder();
 		for (final FieldDto field : form.getFields()) {
 			final String beanName = form.getFormName().toLowerCase();
 			builder.addComponent(beanName, field);
 		}
 
-		addArtifact(builder.getArtifact());
+		addArtifact(artifact);
 
 		if (indexPage == null) {
 			indexPage = DD.PATTERN.replace("*", form.getFormName());
@@ -57,13 +58,13 @@ public class JsfApplicationBuilder extends WebApplicationBuilder {
 	}
 
 	private void addManagedBean(final FormDto form) {
-		final ManagedBeanArtifactBuilder builder = new ManagedBeanArtifactBuilder(
-				getNamespace(), form.getFormName());
+		ManagedBeanArtifact artifact = new ManagedBeanArtifact(getNamespace(), form.getFormName());
+
+		final BeanBuilder builder = artifact.getBuilder();
 		for (final FieldDto field : form.getFields()) {
 			builder.addProperty(field.getName(), field.getType());
 		}
 
-		addArtifact(builder.getArtifact());
-
+		addArtifact(artifact);
 	}
 }

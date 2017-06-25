@@ -4,19 +4,17 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.sun.codemodel.JClassAlreadyExistsException;
+public class BeanBuilderTest {
 
-public class ManagedBeanArtifactBuilderTest {
-
-	private ManagedBeanArtifactBuilder builder;
+	private BeanBuilder builder;
 
 	@Before
 	public void init() {
-		builder = new ManagedBeanArtifactBuilder("test.package", "TestBean");
+		builder = new BeanBuilder();
 	}
 
 	@Test
-	public void addProperty_valid_success() throws JClassAlreadyExistsException {
+	public void addProperty_valid_success() {
 		final String fieldName = "field1";
 		builder.addProperty(fieldName, int.class);
 
@@ -25,17 +23,17 @@ public class ManagedBeanArtifactBuilderTest {
 	}
 
 	@Test(expected = NullPointerException.class)
-	public void addNullProperty() throws JClassAlreadyExistsException {
+	public void addNullProperty() {
 		builder.addProperty(null, String.class);
 	}
 
 	@Test(expected = IllegalArgumentException.class)
-	public void addEmptyNameProperty() throws JClassAlreadyExistsException {
+	public void addEmptyNameProperty() {
 		builder.addProperty("", String.class);
 	}
 
 	@Test(expected = IllegalArgumentException.class)
-	public void addIllegalProperty() throws JClassAlreadyExistsException {
+	public void addIllegalProperty() {
 		builder.addProperty("goto", String.class);
 	}
 

@@ -1,9 +1,9 @@
 package com.pocr.core.artifact;
 
-public interface Artifact {
+public interface Artifact<T extends ArtifactWriter> {
 
     String getPath();
 
-    ArtifactWriter getArtifactWriter();
+    T getArtifactWriter();
 
 }
