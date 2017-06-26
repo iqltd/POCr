@@ -185,11 +185,11 @@
 						<groupId>org.wildfly.plugins</groupId>
 						<artifactId>wildfly-maven-plugin</artifactId>
 						<version>${wf-mvn-version}</version>
-						<configuration>
-							<groupId>${project.groupId}</groupId>
-							<artifactId>pocr-web</artifactId>
-							<name>pocr-web.war</name>
-						</configuration>
+                        <configuration>
+                            <groupId>${project.groupId}</groupId>
+                            <artifactId>pocr-web</artifactId>
+                            <packaging>war</packaging>
+                        </configuration>
 						<executions>
 							<execution>
 								<phase>install</phase>
