@@ -176,4 +176,32 @@
 		</plugins>
 	</build>
 
+	<profiles>
+		<profile>
+			<id>deploy</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.wildfly.plugins</groupId>
+						<artifactId>wildfly-maven-plugin</artifactId>
+						<version>${wf-mvn-version}</version>
+						<configuration>
+							<groupId>${project.groupId}</groupId>
+							<artifactId>pocr-web</artifactId>
+							<name>pocr-web.war</name>
+						</configuration>
+						<executions>
+							<execution>
+								<phase>install</phase>
+								<goals>
+									<goal>deploy</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+
 </project>

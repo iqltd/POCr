@@ -19,8 +19,7 @@ Run standalone Java program ``eu.micul01.pocr.entity.CreateSchema`` from the sam
 - Start the Wildfly application server. 
 Create a datasource in Wildfly pointing to the database created earlier. 
 Make sure the JNDI matches the one in the ``persistence.xml`` file in ``pocr-ejb`` project.
-- Deploy ``pocr-web`` (e.g. using ``mvn wildfly:deploy`` in ``pocr-web``)
-
+- ``mvn clean install -P deploy``
 
 # What to expect
 
