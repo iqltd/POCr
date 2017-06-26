@@ -1,0 +1,16 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:custom="http://java.sun.com/jsf/composite/custom">
+
+    <p:dialog id="formFieldsDialog" widgetVar="formFieldsDialog"
+              dynamic="true" fitViewport="true"
+              visible="#{formBean.formDialogVisible}"
+              header="#{msg['newform.title']}" modal="true" closeOnEscape="true"
+              footer="#{msg['newform.explanation']}" minWidth="800"
+              min-height="450" width="80%" height="80%">
+
+        <custom:newform formBean="#{formBean}" />
+    </p:dialog>
+
+</ui:composition>

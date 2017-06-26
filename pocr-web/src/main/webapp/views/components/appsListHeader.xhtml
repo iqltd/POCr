@@ -1,0 +1,15 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:panelGroup layout="block" styleClass="lineOfElements" id="row" style="padding-bottom:30px;">
+        <div class="element" style="width:300px; font-size: 14px; font-weight: 700; color: #339">
+            <p:outputLabel id="appNameLbl" value="#{msg['home.appName']}"/>
+        </div>
+        <div class="element" style="width:300px; font-size: 14px; font-weight: 700; color: #339">
+            <p:outputLabel id="actionsLbl" value="#{msg['home.actions']}"/>
+        </div>
+    </h:panelGroup>
+
+</ui:composition>

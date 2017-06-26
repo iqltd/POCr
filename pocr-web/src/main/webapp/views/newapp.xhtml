@@ -1,0 +1,27 @@
+<ui:composition template="template/pocr-template.xhtml"
+				xmlns:h="http://java.sun.com/jsf/html"
+				xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<ui:param name="pageName" value="#{msg['newapp.title']}" />
+
+	<ui:define name="main-content">
+
+        <h:panelGroup id="app" styleClass="lineOfElements">
+            <ui:include src="components/newAppSection.xhtml"/>
+        </h:panelGroup>
+
+        <h:panelGroup id="appForms" styleClass="lineOfElements">
+            <ui:include src="components/formsList.xhtml"/>
+        </h:panelGroup>
+
+        <h:panelGroup styleClass="lineOfElements">
+            <ui:include src="components/formButtons.xhtml" />
+        </h:panelGroup>
+
+	</ui:define>
+
+    <ui:define name="popups">
+        <ui:include src="components/newFormPopup.xhtml" />
+    </ui:define>
+
+</ui:composition>

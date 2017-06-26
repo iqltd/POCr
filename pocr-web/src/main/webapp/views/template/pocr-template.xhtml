@@ -18,7 +18,7 @@
 	    	
 	    		<div id="header">
 	    			<div style="float:left">
-						<img src="resources/img/logo_small_bw.png" />
+						<h:graphicImage name="images/logo_small_bw.png" />
 					</div>
 					
 					<div style="float:right">
@@ -36,12 +36,19 @@
 				</div>
 				
 				<div id="content-wrap">
-					
-					<ui:insert name="main-content">
-						Please replace this with a custom content 
-					</ui:insert>
-					
-					<div style="clear:both"/>									
+
+					<ui:include src="/views/components/ajaxStatus.xhtml" />
+
+					<h:form id="app-form">
+						<p:growl id="msgs" life="5000" />
+						<ui:insert name="main-content">
+							Please replace this with a custom content
+						</ui:insert>
+					</h:form>
+
+					<ui:insert name="popups"/>
+
+					<div style="clear:both"></div>
 				
 				</div>
 	    	</f:view>

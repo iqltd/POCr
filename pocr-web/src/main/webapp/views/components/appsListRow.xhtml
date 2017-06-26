@@ -1,0 +1,26 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+
+    <h:panelGroup layout="block" styleClass="lineOfElements" id="row">
+        <div class="element" style="width:300px">
+            <p:outputLabel id="appName" style="font-weight: 700" value="#{app.name}"/>
+        </div>
+        <div class="element">
+            <p:commandButton id="deployApp" value="#{msg['home.deploy']}" disabled="#{app.deployed}"
+                             icon="ui-icon-script" ajax="true" update="@all" action="#{app.deploy}" />
+        </div>
+        <div class="element">
+            <p:commandButton id="runApp" value="#{msg['home.run']}" disabled="#{not app.deployed}"
+                             icon="ui-icon-play" ajax="true" update="@all" action="#{app.run}" target="_blank" />
+        </div>
+        <div class="element">
+            <p:commandButton id="deleteApp" value="#{msg['home.delete']}"
+                             icon="ui-icon-close" ajax="true" update="@all"  />
+        </div>
+
+    </h:panelGroup>
+
+</ui:composition>

@@ -1,0 +1,19 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+
+
+    <dl class="element">
+        <dt>
+            <p:outputLabel for="appDescription" value="#{msg['newapp.appDescription']}" />
+        </dt>
+        <dd>
+            <p:inputText id="appDescription" value="#{appBean.description}">
+                <f:ajax />
+            </p:inputText>
+        </dd>
+    </dl>
+
+</ui:composition>

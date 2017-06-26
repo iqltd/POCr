@@ -1,0 +1,12 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:panelGroup class="messageSection" style="padding:30px; display: block;">
+        <h:panelGroup style="margin: 10px;" rendered="#{rendered}">
+            <p:outputLabel styleClass="message">#{msg['home.welcomeMessage']}</p:outputLabel>
+        </h:panelGroup>
+    </h:panelGroup>
+
+</ui:composition>
