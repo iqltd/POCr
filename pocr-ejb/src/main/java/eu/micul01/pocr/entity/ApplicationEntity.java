@@ -1,6 +1,7 @@
 package eu.micul01.pocr.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.*;
@@ -17,7 +18,7 @@ public class ApplicationEntity implements Serializable {
 	private String description;
 
 	@OneToMany(mappedBy = "application", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	private List<FormEntity> forms;
+	private List<FormEntity> forms = new ArrayList<>();
 
 	public String getName() {
 		return name;

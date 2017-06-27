@@ -37,9 +37,9 @@ public class Applications implements Serializable {
 
 	@PostConstruct
 	public void init() {
-//        for (ApplicationEntity app: dbBean.getApplications()) {
-//            apps.put(app.getName(), app);
-//        }
+        for (ApplicationEntity app: dbBean.getApplications()) {
+            apps.put(app.getName(), app);
+        }
 	}
 
     public List<ApplicationEntity> getAppList() {
@@ -53,8 +53,8 @@ public class Applications implements Serializable {
     public void deleteApp(String app) {
         LOGGER.info("delete(). Application to be deleted: " + app);
 
-        apps.remove(app);
         dbBean.deleteApplication(apps.get(app));
+        apps.remove(app);
     }
 
     public void deploy(ApplicationEntity entity) throws IOException, ClassNotFoundException {

@@ -42,7 +42,6 @@ public class NewForm implements Serializable {
 
 	public void reset() {
 		form = new FormEntity();
-		form.setFields(new ArrayList<FieldEntity>());
 		LOGGER.warn("reset(). Form reset.");
 	}
 

@@ -12,7 +12,6 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 @ManagedBean(name = "newApp")
@@ -22,7 +21,7 @@ public class NewApplication implements Serializable {
 	private static final Logger LOGGER = LoggerFactory.getLogger(NewApplication.class);
 	private static final long serialVersionUID = 1L;
 
-	private ApplicationEntity model;
+	private ApplicationEntity app;
 
     @EJB
     private DbBean dbBean;
@@ -36,46 +35,47 @@ public class NewApplication implements Serializable {
     }
 
 	public void reset() {
-		model = new ApplicationEntity();
-		model.setForms(new ArrayList<>());
+		app = new ApplicationEntity();
 	}
 
 	public void addForm(final FormEntity form) {
 		LOGGER.info("addForm(). Form added: " + form.getName());
 		LOGGER.info("addForm(). Fields: " + form.getFields());
 
-		model.getForms().add(form);
+		app.getForms().add(form);
 	}
 
 	public String submit() {
-        applications.addApp(model);
-        dbBean.persistApplication(model);
+		LOGGER.info("submit(). App submitted: " + app.getName());
+
+		applications.addApp(app);
+        dbBean.persistApplication(app);
 
         return "home.xhtml?faces-redirect=true";
     }
 
-	public ApplicationEntity getModel() {
-		return model;
+	public ApplicationEntity getApp() {
+		return app;
 	}
 
 	public String getName() {
-		return model.getName();
+		return app.getName();
 	}
 
 	public void setName(final String appName) {
-		model.setName(appName);
+		app.setName(appName);
 	}
 
 	public List<FormEntity> getForms() {
-		return model.getForms();
+		return app.getForms();
 	}
 
 	public String getDescription() {
-		return model.getDescription();
+		return app.getDescription();
 	}
 
 	public void setDescription(final String description) {
-		model.setDescription(description);
+		app.setDescription(description);
 	}
 
     public Applications getApplications() {

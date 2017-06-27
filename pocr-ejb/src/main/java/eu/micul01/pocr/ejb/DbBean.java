@@ -18,22 +18,8 @@ public class DbBean {
 	EntityManager entityManager;
 
 
-	public void persistApplication(final ApplicationEntity application) {
-		entityManager.persist(application);
-		if (application.getForms() == null) {
-			return;
-		}
-		for (final FormEntity form : application.getForms()) {
-			form.setApplication(application);
-			entityManager.persist(form);
-			if (form.getFields() == null) {
-				continue;
-			}
-			for (final FieldEntity field : form.getFields()) {
-				field.setForm(form);
-				entityManager.persist(field);
-			}
-		}
+	public ApplicationEntity persistApplication(final ApplicationEntity application) {
+		return entityManager.merge(application);
 	}
 
 	public void deleteApplication(ApplicationEntity entity) {
