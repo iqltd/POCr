@@ -2,33 +2,38 @@ package eu.micul01.pocr.web.bean;
 
 
 import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.faces.event.ActionEvent;
 
+import eu.micul01.pocr.ejb.DbBean;
 import eu.micul01.pocr.entity.FieldEntity;
 import eu.micul01.pocr.entity.FormEntity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 
-@ManagedBean(name = "formBean")
+@ManagedBean(name = "newForm")
 @ViewScoped
-public class FormBean {
+public class NewForm implements Serializable {
 
-	private static final Logger LOGGER = LoggerFactory
-			.getLogger(FormBean.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(NewForm.class);
+	private static final long serialVersionUID = 1L;
 
 	private boolean formDialogVisible;
+	private FormEntity form;
 
-	private FormEntity model;
+	@EJB
+	private DbBean dbBean;
 
-	@ManagedProperty(value = "#{appBean}")
-	private ApplicationBean applicationBean;
+	@ManagedProperty("#{newApp}")
+	private NewApplication newApp;
 
 	@PostConstruct
 	public void init() {
@@ -36,22 +41,22 @@ public class FormBean {
 	}
 
 	public void reset() {
-		model = new FormEntity();
-		model.setFields(new ArrayList<FieldEntity>());
+		form = new FormEntity();
+		form.setFields(new ArrayList<FieldEntity>());
 		LOGGER.warn("reset(). Form reset.");
 	}
 
 	public String getFormName() {
-		return model.getName();
+		return form.getName();
 	}
 
 	public void setFormName(final String formName) {
 		LOGGER.info("Form name set to: " + formName);
-		model.setName(formName);
+		form.setName(formName);
 	}
 
 	public List<FieldEntity> getFields() {
-		return model.getFields();
+		return form.getFields();
 	}
 
 	public void addField(final ActionEvent event) {
@@ -65,19 +70,9 @@ public class FormBean {
 		LOGGER.info("removeField(). Field removed: " + field.getName());
 	}
 
-	public void addToApp() {
-		LOGGER.info("addToApp(). Added form to application.");
-		applicationBean.addForm(model);
-		reset();
+	public void submit() {
+		newApp.addForm(form);
 		hideFormDialog();
-	}
-
-	public ApplicationBean getApplicationBean() {
-		return applicationBean;
-	}
-
-	public void setApplicationBean(final ApplicationBean applicationBean) {
-		this.applicationBean = applicationBean;
 	}
 
 	public void showFormDialog() {
@@ -90,6 +85,10 @@ public class FormBean {
 		formDialogVisible = false;
 	}
 
+	public FormEntity getForm() {
+		return form;
+	}
+
 	public boolean isFormDialogVisible() {
 		return formDialogVisible;
 	}
@@ -99,11 +98,18 @@ public class FormBean {
 	}
 
 	public String getDescription() {
-		return model.getDescription();
+		return form.getDescription();
 	}
 
 	public void setDescription(final String description) {
-		model.setDescription(description);
+		form.setDescription(description);
 	}
 
+	public NewApplication getNewApp() {
+		return newApp;
+	}
+
+	public void setNewApp(NewApplication newApp) {
+		this.newApp = newApp;
+	}
 }

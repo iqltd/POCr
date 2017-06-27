@@ -1,0 +1,11 @@
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+
+    <p:commandButton id="addField"
+                     value="#{msg['newform.addField']}"
+                     update="formFields"  immediate="true"
+                     actionListener="#{newForm.addField}"
+                     icon="ui-icon-plus"
+                     ajax="true" />
+
+</ui:composition>

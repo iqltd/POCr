@@ -1,0 +1,11 @@
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+
+    <p:commandButton action="#{newForm.removeField(field)}"
+                     id="removeField"
+                     styleClass="element"
+                     update="@form"
+                     icon="ui-icon-close"
+                     immediate="true"/>
+
+</ui:composition>

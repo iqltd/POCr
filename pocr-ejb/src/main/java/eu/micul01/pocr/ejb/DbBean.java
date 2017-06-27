@@ -17,8 +17,8 @@ public class DbBean {
 	@PersistenceContext(unitName = "pocr-pu")
 	EntityManager entityManager;
 
-	public void persistApplication(final ApplicationEntity application) {
 
+	public void persistApplication(final ApplicationEntity application) {
 		entityManager.persist(application);
 		if (application.getForms() == null) {
 			return;
@@ -36,18 +36,18 @@ public class DbBean {
 		}
 	}
 
+	public void deleteApplication(ApplicationEntity entity) {
+		entityManager.remove(entityManager.merge(entity));
+	}
+
 	public List<ApplicationEntity> getApplications() {
-		final List<ApplicationEntity> apps = entityManager.createQuery(
+		return entityManager.createQuery(
 				"Select a from ApplicationEntity a", ApplicationEntity.class)
 				.getResultList();
-
-		return apps;
 	}
 
 	public List<TypeEntity> getFieldTypes() {
-		final List<TypeEntity> types = entityManager.createQuery(
+		return entityManager.createQuery(
 				"Select t from TypeEntity t", TypeEntity.class).getResultList();
-
-		return types;
 	}
 }

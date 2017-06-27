@@ -15,7 +15,7 @@ import javax.faces.bean.ManagedBean;
 
 @ManagedBean(name = "fieldTypesBean")
 @ApplicationScoped
-public class FieldTypesBean implements Serializable {
+public class FieldTypes implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 

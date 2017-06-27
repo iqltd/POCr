@@ -1,0 +1,10 @@
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:panelGroup styleClass="messageSection" style="padding:30px; display: block;">
+        <p:commandButton id="addApp" value="#{msg['home.newApp']}"
+                         icon="ui-icon-plus" ajax="false" action="newapp?faces-redirect=true" />
+    </h:panelGroup>
+
+</ui:composition>

@@ -14,7 +14,7 @@ import eu.micul01.pocr.converter.Entity2Dto;
 import eu.micul01.pocr.entity.ApplicationEntity;
 import eu.micul01.pocr.entity.FormEntity;
 
-@Stateless(name = "pocrBean", mappedName = "pocrBean")
+@Stateless
 public class PocrBean {
 
 	public void deployApplication(final ApplicationEntity app)

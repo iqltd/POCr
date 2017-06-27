@@ -1,17 +1,18 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:f="http://java.sun.com/jsf/core"
-                xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui">
 
-
     <dl class="element">
         <dt>
-            <p:outputLabel for="appDescription" value="#{msg['newapp.appDescription']}" />
+            <p:outputLabel for="appName" value="#{msg['newapp.appName']}" />
         </dt>
         <dd>
-            <p:inputText id="appDescription" value="#{appBean.description}">
+            <p:inputText id="appName" value="#{newApp.name}" required="true"
+                         requiredMessage="#{msg['newapp.required.appName']}"
+                         validatorMessage="#{msg['newapp.valid.appName']}">
                 <f:ajax />
+                <f:validateRegex pattern="^[a-zA-Z][a-zA-Z0-9]*?$" />
             </p:inputText>
         </dd>
     </dl>

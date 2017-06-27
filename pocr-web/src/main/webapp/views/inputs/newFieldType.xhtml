@@ -1,0 +1,16 @@
+<ui:composition xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:panelGroup>
+        <dl class="element">
+            <dt><p:outputLabel id="fieldTypeLbl" for="fieldType" value="#{msg['newform.fieldType']}"/></dt>
+            <dd><p:selectOneMenu id="fieldType"  value="#{field.type}"  converter="fieldTypeConverter">
+                <f:ajax />
+                <f:selectItems value="#{fieldTypesBean.types}" var="type" itemLabel="#{type.name}" itemValue="#{type}"/>
+            </p:selectOneMenu></dd>
+        </dl>
+    </h:panelGroup>
+
+</ui:composition>

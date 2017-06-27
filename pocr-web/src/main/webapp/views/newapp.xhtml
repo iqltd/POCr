@@ -7,21 +7,21 @@
 	<ui:define name="main-content">
 
         <h:panelGroup id="app" styleClass="lineOfElements">
-            <ui:include src="components/newAppSection.xhtml"/>
+            <ui:include src="sections/newAppSection.xhtml"/>
         </h:panelGroup>
 
         <h:panelGroup id="appForms" styleClass="lineOfElements">
-            <ui:include src="components/formsList.xhtml"/>
+            <ui:include src="sections/formsList.xhtml"/>
         </h:panelGroup>
 
         <h:panelGroup styleClass="lineOfElements">
-            <ui:include src="components/formButtons.xhtml" />
+            <ui:include src="buttons/newAppButtons.xhtml" />
         </h:panelGroup>
 
 	</ui:define>
 
     <ui:define name="popups">
-        <ui:include src="components/newFormPopup.xhtml" />
+        <ui:include src="popups/newFormPopup.xhtml" />
     </ui:define>
 
 </ui:composition>

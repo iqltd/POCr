@@ -1,0 +1,40 @@
+<ui:composition xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:panelGroup>
+
+        <h:form id="newForm-form">
+            <p:panel id="createFormPnl" style="padding: 50px 25px 25px; overflow: scrollbar" >
+
+                <p:growl id="growl" life="15000" />
+
+                <h:panelGroup id="form" styleClass="lineOfElements">
+                    <ui:include src="/views/inputs/newFormName.xhtml" />
+                    <ui:include src="/views/inputs/newFormDescription.xhtml" />
+                    <h:panelGroup styleClass="element">
+                        <ui:include src="/views/buttons/addField.xhtml" />
+                    </h:panelGroup>
+
+                    <div style="clear:both"></div>
+
+                </h:panelGroup>
+
+                <h:panelGrid id="formFields" styleClass="lineOfElements">
+                    <ui:repeat var="field" value="#{newForm.fields}">
+                        <h:panelGroup styleClass="lineOfElements" style="margin-top:20px;">
+                            <ui:include src="newFieldSection.xhtml" />
+                        </h:panelGroup>
+                    </ui:repeat>
+                </h:panelGrid>
+
+                <h:panelGroup styleClass="lineOfElements" id="buttons">
+                    <ui:include src="/views/buttons/newFormButtons.xhtml" />
+                </h:panelGroup>
+
+            </p:panel>
+        </h:form>
+
+    </h:panelGroup>
+
+</ui:composition>

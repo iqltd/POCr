@@ -1,0 +1,22 @@
+<ui:composition xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:panelGroup>
+        <dl class="element">
+            <dt><p:outputLabel id="fieldNameLbl" for="fieldName" value="#{msg['newform.fieldName']}"/></dt>
+            <dd><p:inputText id="fieldName"
+                             value="#{field.name}"
+                             required="true"
+                             requiredMessage="#{msg['newform.required.fieldName']}"
+                             validatorMessage="#{msg['newform.valid.fieldName']}">
+                    <f:ajax />
+                    <f:validateRegex pattern="^[a-zA-Z][a-zA-Z0-9]*?$" />
+                </p:inputText>
+                <p:watermark for="fieldName" value="#{msg['common.validIdentifierName']}" id="fieldNameWm" />
+            </dd>
+        </dl>
+    </h:panelGroup>
+
+</ui:composition>

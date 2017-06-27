@@ -1,20 +1,20 @@
-<ui:composition template="template/pocr-template.xhtml"
-				xmlns:h="http://java.sun.com/jsf/html"
-				xmlns:ui="http://java.sun.com/jsf/facelets">
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+				template="template/pocr-template.xhtml">
 
 	<ui:param name="pageName" value="#{msg['home.title']}"/>
 
 	<ui:define name="main-content">
 
-		<ui:include src="components/appsList.xhtml">
-			<ui:param name="rendered" value="#{not empty appCollectionBean.apps}" />
+		<ui:include src="sections/appsList.xhtml">
+			<ui:param name="rendered" value="#{not empty applications.appList}" />
 		</ui:include>
 
-		<ui:include src="components/noApps.xhtml">
-			<ui:param name="rendered" value="#{empty appCollectionBean.apps}" />
+		<ui:include src="sections/noApps.xhtml">
+			<ui:param name="rendered" value="#{empty applications.appList}" />
 		</ui:include>
 
-		<ui:include src="components/addAppButton.xhtml" />
+		<ui:include src="buttons/addApp.xhtml" />
 
 	</ui:define>
 </ui:composition>

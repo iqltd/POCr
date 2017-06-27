@@ -1,0 +1,15 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:panelGroup>
+        <p:commandButton id="submit" value="#{msg['common.submit']}" ajax="false"
+                         action="#{newForm.submit}"/>
+        <p:commandButton id="reset" value="#{msg['common.reset']}" immediate="true"
+                         update="form formFields" actionListener="#{newForm.reset}" />
+        <p:commandButton id="cancel" value="#{msg['common.cancel']}" ajax="false"
+                         immediate="true" actionListener="#{newForm.init}" action="#{newForm.hideFormDialog}" />
+    </h:panelGroup>
+
+</ui:composition>

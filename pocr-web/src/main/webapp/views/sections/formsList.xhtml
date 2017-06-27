@@ -4,48 +4,48 @@
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui">
 
-    <p:dataTable var="form" value="#{appBean.forms}"
-                 rendered="#{not empty appBean.forms}">
+    <p:dataTable var="form" value="#{newApp.forms}"
+                 rendered="#{not empty newApp.forms}" style="text-align: center">
 
         <f:facet name="header">#{msg['newapp.forms']}</f:facet>
-        <p:column style="width: 30%">
+        <p:column width="20%">
             <f:facet name="header">
                 <h:outputText value="#{msg['newapp.formName']}" />
             </f:facet>
             <h:outputText value="#{form.name}" />
         </p:column>
 
-        <p:column style="width: 60%">
+        <p:column width="50%">
             <f:facet name="header">
                 <h:outputText value="#{msg['newapp.formDescription']}" />
             </f:facet>
             <h:outputText value="#{form.description}" />
         </p:column>
 
-        <p:column style="width: 4%">
+        <p:column>
             <f:facet name="header">
                         <span style="text-align:center">
                             <h:outputText value="#{msg['newapp.formSize']}" />
                         </span>
             </f:facet>
-            <h:outputText value="#{appBean.forms.size()}" />
+            <h:outputText value="#{newApp.forms.size()}" />
         </p:column>
 
-        <p:column style="width: 3%">
-            <p:commandButton action="#{formBean.showFormDialog}"
+        <p:column>
+            <p:commandButton action="#{newForm.showFormDialog}"
                              id="editForm" icon="ui-icon-pencil" />
 
         </p:column>
 
-        <p:column style="width: 3%">
+        <p:column>
             <p:commandButton id="removeForm" icon="ui-icon-close"
                              immediate="true" />
         </p:column>
 
         <f:facet name="footer">
             <h:outputFormat value="#{msg['newapp.summary']}" escape="false">
-                <f:param value="#{appBean.name}" />
-                <f:param value="#{appBean.forms.size()}" />
+                <f:param value="#{newApp.name}" />
+                <f:param value="#{newApp.forms.size()}" />
             </h:outputFormat>
         </f:facet>
 

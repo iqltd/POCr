@@ -6,16 +6,16 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets" 
       xmlns:p="http://primefaces.org/ui">  
-      
-    <h:head>  
+
+    <h:head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     	<h:outputStylesheet library="css" name="pocr-style.css"  />
     </h:head>  
       
     <h:body>
     	<div id="page-wrap">
 	    	<f:view locale="#{lang.localeCode}">
-	    	
-	    	
+
 	    		<div id="header">
 	    			<div style="float:left">
 						<h:graphicImage name="images/logo_small_bw.png" />
@@ -31,13 +31,13 @@
 					</div>
 				</div>
 				
-				<div id="band">
-					<h4>#{pageName}</h4>
-				</div>
+				<!--<div id="band">-->
+					<!--<h4>#{pageName}</h4>-->
+				<!--</div>-->
 				
 				<div id="content-wrap">
 
-					<ui:include src="/views/components/ajaxStatus.xhtml" />
+					<ui:include src="/views/popups/ajaxStatus.xhtml" />
 
 					<h:form id="app-form">
 						<p:growl id="msgs" life="5000" />
@@ -58,4 +58,4 @@
    			<p>Copyleft Valentin Musoiu 2015</p>
    		</div>
     </h:body>  
-</html>  
+</html>

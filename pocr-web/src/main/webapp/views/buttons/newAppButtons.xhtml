@@ -3,9 +3,9 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
 
-    <h:panelGroup class="messageSection" style="padding:30px; display: block;">
+    <h:panelGroup style="display: block;">
         <p:commandButton id="submit" value="#{msg['common.submit']}"
-                         type="submit" action="#{appBean.submit}" />
+                         type="submit" action="#{newApp.submit}" />
         <p:commandButton id="cancel" value="#{msg['common.cancel']}"
                          type="cancel" action="home?faces-redirect=true" immediate="true" />
     </h:panelGroup>

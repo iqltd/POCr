@@ -1,0 +1,16 @@
+<ui:composition xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:panelGroup>
+        <dl class="element">
+            <dt><p:outputLabel for="formDescription" id="formDescriptionLbl" value="#{msg['newform.formDescription']}"/></dt>
+            <dd><p:inputText id="formDescription" value="#{newForm.description}" >
+                <f:ajax />
+            </p:inputText>
+            </dd>
+        </dl>
+    </h:panelGroup>
+
+</ui:composition>

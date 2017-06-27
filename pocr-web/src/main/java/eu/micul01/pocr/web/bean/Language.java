@@ -13,11 +13,8 @@ import javax.faces.event.ValueChangeEvent;
 
 @ManagedBean(name = "lang")
 @SessionScoped
-public class LanguageBean implements Serializable {
+public class Language implements Serializable {
 
-	/**
-	 *
-	 */
 	private static final long serialVersionUID = 1L;
 
 	private String localeCode;
@@ -29,7 +26,7 @@ public class LanguageBean implements Serializable {
 
 	private static Map<String, Object> countries;
 	static {
-		countries = new LinkedHashMap<String, Object>();
+		countries = new LinkedHashMap<>();
 		countries.put("English", Locale.ENGLISH);
 		countries.put("Română", new Locale("ro", "RO"));
 	}
@@ -51,14 +48,10 @@ public class LanguageBean implements Serializable {
 		final String newLocaleValue = e.getNewValue().toString();
 
 		for (final Map.Entry<String, Object> entry : countries.entrySet()) {
-
 			if (entry.getValue().toString().equals(newLocaleValue)) {
-
 				FacesContext.getCurrentInstance().getViewRoot()
 						.setLocale((Locale) entry.getValue());
-
 			}
 		}
 	}
-
 }

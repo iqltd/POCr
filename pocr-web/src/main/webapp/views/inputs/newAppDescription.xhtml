@@ -3,16 +3,14 @@
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui">
 
+
     <dl class="element">
         <dt>
-            <p:outputLabel for="appName" value="#{msg['newapp.appName']}" />
+            <p:outputLabel for="appDescription" value="#{msg['newapp.appDescription']}" />
         </dt>
         <dd>
-            <p:inputText id="appName" value="#{appBean.name}" required="true"
-                         requiredMessage="#{msg['newapp.required.appName']}"
-                         validatorMessage="#{msg['newapp.valid.appName']}">
+            <p:inputText id="appDescription" value="#{newApp.description}">
                 <f:ajax />
-                <f:validateRegex pattern="^[a-zA-Z][a-zA-Z0-9]*?$" />
             </p:inputText>
         </dd>
     </dl>

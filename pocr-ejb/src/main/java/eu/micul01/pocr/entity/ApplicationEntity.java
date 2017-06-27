@@ -3,18 +3,12 @@ package eu.micul01.pocr.entity;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "applications")
 public class ApplicationEntity implements Serializable {
 
-	/**
-	 *
-	 */
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -22,7 +16,7 @@ public class ApplicationEntity implements Serializable {
 
 	private String description;
 
-	@OneToMany(mappedBy = "application")
+	@OneToMany(mappedBy = "application", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<FormEntity> forms;
 
 	public String getName() {
