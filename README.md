@@ -1,3 +1,8 @@
+
+
+[![Stories in Ready](https://badge.waffle.io/micul01/pocr.svg?label=ready&title=Ready)](http://waffle.io/micul01/pocr)
+
+
 # POCr
 Generate, build and deploy on a weblogic server simple JSF applications
 
