@@ -17,7 +17,7 @@ public class ApplicationEntity implements Serializable {
 
 	private String description;
 
-	@OneToMany(mappedBy = "application", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "application", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<FormEntity> forms = new ArrayList<>();
 
 	public String getName() {

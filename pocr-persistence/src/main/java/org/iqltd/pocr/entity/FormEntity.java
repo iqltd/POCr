@@ -24,7 +24,7 @@ public class FormEntity implements Serializable {
 	@JoinColumn(name = "app_name")
 	private ApplicationEntity application;
 
-	@OneToMany(mappedBy = "form", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "form", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<FieldEntity> fields = new ArrayList<>();
 
 	public int getId() {
