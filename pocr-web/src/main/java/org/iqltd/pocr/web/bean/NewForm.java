@@ -60,6 +60,7 @@ public class NewForm implements Serializable {
 	public void addField(final ActionEvent event) {
 		final FieldEntity field = new FieldEntity();
 		getFields().add(field);
+		field.setForm(form);
 		LOGGER.info("addField(). New field added.");
 	}
 

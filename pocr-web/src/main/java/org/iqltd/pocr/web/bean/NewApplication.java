@@ -43,6 +43,7 @@ public class NewApplication implements Serializable {
 		LOGGER.info("addForm(). Fields: " + form.getFields());
 
 		app.getForms().add(form);
+		form.setApplication(app);
 	}
 
 	public String submit() {
