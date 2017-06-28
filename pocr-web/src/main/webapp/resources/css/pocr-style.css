@@ -36,12 +36,14 @@ html, body {
 
 .logo {
     display: block;
-    background-color: #36A9FF;
+    background-color: #3399FF;
     height: 70px;
-    padding: 5px 20px;
+    padding: 5px 20px 10px;
     border-left: 1px solid #39B0FF;
     border-right: 1px solid #39B0FF;
     box-shadow: 2px 2px 1px rgba(50, 50, 50, 0.3);
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
 }
 
 #footer {
