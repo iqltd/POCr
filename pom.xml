@@ -16,10 +16,11 @@
 	</developers>
 
 	<modules>
+		<module>pocr-jaxb</module>
 		<module>pocr-core</module>
 		<module>pocr-persistence</module>
 		<module>pocr-web</module>
-        <module>pocr-install</module>
+		<module>pocr-install</module>
     </modules>
 
 	<properties>
@@ -31,6 +32,7 @@
 		<derby-version>10.8.3.0</derby-version>
 		<hibernate-version>5.2.10.Final</hibernate-version>
 		<javaee-api-version>7.0</javaee-api-version>
+		<jaxb2-maven-version>2.3</jaxb2-maven-version>
 		<jdom2-version>2.0.5</jdom2-version>
 		<jsf-api-version>2.1</jsf-api-version>
 		<junit-version>4.12</junit-version>
@@ -49,21 +51,26 @@
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
-				<groupId>eu.micul01.pocr</groupId>
-				<artifactId>pocr-web</artifactId>
+				<groupId>${project.groupId}</groupId>
+				<artifactId>pocr-jaxb</artifactId>
 				<version>${project.version}</version>
-				<type>war</type>
 			</dependency>
 			<dependency>
-				<groupId>eu.micul01.pocr</groupId>
+				<groupId>${project.groupId}</groupId>
+				<artifactId>pocr-core</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>${project.groupId}</groupId>
 				<artifactId>pocr-persistence</artifactId>
 				<version>${project.version}</version>
 				<type>ejb</type>
 			</dependency>
 			<dependency>
-				<groupId>eu.micul01.pocr</groupId>
-				<artifactId>pocr-core</artifactId>
+				<groupId>${project.groupId}</groupId>
+				<artifactId>pocr-web</artifactId>
 				<version>${project.version}</version>
+				<type>war</type>
 			</dependency>
 
 			<dependency>
@@ -122,6 +129,11 @@
 				<groupId>org.apache.commons</groupId>
 				<artifactId>commons-compress</artifactId>
 				<version>${commons-compress-version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>jaxb2-maven-plugin</artifactId>
+				<version>${jaxb2-maven-version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>

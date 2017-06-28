@@ -18,14 +18,14 @@ Download and install:
 
 # Configurations
 
-- Download POCr sources and ``mvn clean install`` in the parent directory.
+- Download POCr sources and ``mvn clean install`` to make sure the build works.
 - Start the MySQL server. Create a MySQL database. 
 - Update the ``persistence.xml`` file in ``pocr-install`` with the correct database connection details. 
 Run standalone Java program ``eu.micul01.pocr.entity.CreateSchema`` from the same project.
 - Start the Wildfly application server. 
 Create a datasource in Wildfly pointing to the database created earlier. 
 Make sure the JNDI matches the one in the ``persistence.xml`` file in ``pocr-persistence`` project.
-- ``mvn clean install -P deploy``
+- ``mvn install -P deploy``
 
 # What to expect
 
