@@ -28,7 +28,7 @@ html, body {
 
 #header {
 	background-color: #3399FF;
-	height: 50px;
+	height: 55px;
 	padding: 0px 10%;
 	margin: 0;
 	border-bottom: 1px solid #999999;
@@ -38,12 +38,12 @@ html, body {
     display: block;
     background-color: #3399FF;
     height: 70px;
-    padding: 5px 20px 10px;
+    padding: 5px 15px;
     border-left: 1px solid #39B0FF;
     border-right: 1px solid #39B0FF;
-    box-shadow: 2px 2px 1px rgba(50, 50, 50, 0.3);
-    border-bottom-right-radius: 20px;
-    border-bottom-left-radius: 20px;
+    box-shadow: 1px 1px 1px rgba(50, 50, 50, 0.3);
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
 }
 
 #footer {
