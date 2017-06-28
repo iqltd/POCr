@@ -18,10 +18,14 @@
 
 	    		<div id="header">
 	    			<div style="float:left">
-						<h:graphicImage name="images/logo_small_bw.png" />
+						<h:form id="logoForm">
+							<h:commandLink action="home.xhtml?faces-redirect=true" styleClass="logo">
+								<h:graphicImage name="images/logo_small_bw.png" height="70px" />
+							</h:commandLink>
+						</h:form>
 					</div>
 					
-					<div style="float:right">
+					<div style="float:right; margin-top: 10px;">
 						<h:form id="languageForm">
 							<p:selectOneMenu value="#{lang.localeCode}" onchange="submit()"
 											 valueChangeListener="#{lang.countryLocaleCodeChanged}">
@@ -30,10 +34,6 @@
 						</h:form>
 					</div>
 				</div>
-				
-				<!--<div id="band">-->
-					<!--<h4>#{pageName}</h4>-->
-				<!--</div>-->
 				
 				<div id="content-wrap">
 

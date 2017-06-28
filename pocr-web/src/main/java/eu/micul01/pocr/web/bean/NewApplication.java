@@ -1,6 +1,6 @@
 package eu.micul01.pocr.web.bean;
 
-import eu.micul01.pocr.ejb.DbBean;
+import eu.micul01.pocr.ejb.RepositoryBean;
 import eu.micul01.pocr.entity.ApplicationEntity;
 import eu.micul01.pocr.entity.FormEntity;
 import org.slf4j.Logger;
@@ -24,7 +24,7 @@ public class NewApplication implements Serializable {
 	private ApplicationEntity app;
 
     @EJB
-    private DbBean dbBean;
+    private RepositoryBean repository;
 
 	@ManagedProperty("#{applications}")
     private Applications applications;
@@ -49,7 +49,7 @@ public class NewApplication implements Serializable {
 		LOGGER.info("submit(). App submitted: " + app.getName());
 
 		applications.addApp(app);
-        dbBean.persistApplication(app);
+        repository.persistApplication(app);
 
         return "home.xhtml?faces-redirect=true";
     }

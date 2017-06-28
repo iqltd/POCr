@@ -1,7 +1,7 @@
 package eu.micul01.pocr.web.bean;
 
 
-import eu.micul01.pocr.ejb.DbBean;
+import eu.micul01.pocr.ejb.RepositoryBean;
 import eu.micul01.pocr.entity.TypeEntity;
 
 import java.io.Serializable;
@@ -22,11 +22,11 @@ public class FieldTypes implements Serializable {
 	private List<TypeEntity> types;
 
 	@EJB
-	private DbBean dbBean;
+	private RepositoryBean repository;
 
 	@PostConstruct
 	public void populateTypes() {
-		types = dbBean.getFieldTypes();
+		types = repository.getFieldTypes();
 	}
 
 	public List<TypeEntity> getTypes() {

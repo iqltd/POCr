@@ -12,7 +12,7 @@ import eu.micul01.pocr.entity.FormEntity;
 import eu.micul01.pocr.entity.TypeEntity;
 
 @Stateless
-public class DbBean {
+public class RepositoryBean {
 
 	@PersistenceContext(unitName = "pocr-pu")
 	EntityManager entityManager;

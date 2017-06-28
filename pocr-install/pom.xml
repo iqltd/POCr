@@ -17,7 +17,7 @@
     <dependencies>
         <dependency>
             <groupId>eu.micul01.pocr</groupId>
-            <artifactId>pocr-ejb</artifactId>
+            <artifactId>pocr-persistence</artifactId>
             <type>ejb</type>
         </dependency>
         <dependency>

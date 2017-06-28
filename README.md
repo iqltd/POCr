@@ -1,6 +1,7 @@
 
 
 [![Stories in Ready](https://badge.waffle.io/micul01/pocr.svg?label=ready&title=Ready)](http://waffle.io/micul01/pocr)
+[![Stories in In Progress](https://badge.waffle.io/micul01/pocr.svg?label=in%20progress&title=In%20Progress)](http://waffle.io/micul01/pocr)
 
 
 # POCr
@@ -23,7 +24,7 @@ Download and install:
 Run standalone Java program ``eu.micul01.pocr.entity.CreateSchema`` from the same project.
 - Start the Wildfly application server. 
 Create a datasource in Wildfly pointing to the database created earlier. 
-Make sure the JNDI matches the one in the ``persistence.xml`` file in ``pocr-ejb`` project.
+Make sure the JNDI matches the one in the ``persistence.xml`` file in ``pocr-persistence`` project.
 - ``mvn clean install -P deploy``
 
 # What to expect

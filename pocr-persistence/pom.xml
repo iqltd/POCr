@@ -8,7 +8,7 @@
 		<version>1.2</version>
 	</parent>
 
-	<artifactId>pocr-ejb</artifactId>
+	<artifactId>pocr-persistence</artifactId>
 	<packaging>ejb</packaging>
 
 	<name>pocr ejb</name>
@@ -18,11 +18,6 @@
 	</properties>
 
 	<dependencies>
-		<dependency>
-			<groupId>eu.micul01.pocr</groupId>
-			<artifactId>pocr-core</artifactId>
-		</dependency>
-
 		<dependency>
 			<groupId>javax</groupId>
 			<artifactId>javaee-api</artifactId>

@@ -8,14 +8,13 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.faces.event.ActionEvent;
 
-import eu.micul01.pocr.ejb.DbBean;
+import eu.micul01.pocr.ejb.RepositoryBean;
 import eu.micul01.pocr.entity.FieldEntity;
 import eu.micul01.pocr.entity.FormEntity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -30,7 +29,7 @@ public class NewForm implements Serializable {
 	private FormEntity form;
 
 	@EJB
-	private DbBean dbBean;
+	private RepositoryBean repository;
 
 	@ManagedProperty("#{newApp}")
 	private NewApplication newApp;

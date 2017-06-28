@@ -1,8 +1,11 @@
 package eu.micul01.pocr.web.bean;
 
-import eu.micul01.pocr.ejb.DbBean;
-import eu.micul01.pocr.ejb.PocrBean;
+import com.pocr.core.Pocr;
+import com.pocr.core.dto.FormDto;
+import eu.micul01.pocr.ejb.RepositoryBean;
 import eu.micul01.pocr.entity.ApplicationEntity;
+import eu.micul01.pocr.entity.FormEntity;
+import eu.micul01.pocr.web.util.EntityToDto;
 import org.primefaces.context.RequestContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,14 +33,13 @@ public class Applications implements Serializable {
 	private final Set<String> deployed = new HashSet<>();
 
 	@EJB
-	private DbBean dbBean;
+	private RepositoryBean repository;
 
-    @EJB
-    private PocrBean pocrBean;
+    private Pocr pocr = new Pocr();
 
 	@PostConstruct
 	public void init() {
-        for (ApplicationEntity app: dbBean.getApplications()) {
+        for (ApplicationEntity app: repository.getApplications()) {
             apps.put(app.getName(), app);
         }
 	}
@@ -53,15 +55,20 @@ public class Applications implements Serializable {
     public void deleteApp(String app) {
         LOGGER.info("delete(). Application to be deleted: " + app);
 
-        dbBean.deleteApplication(apps.get(app));
+        repository.deleteApplication(apps.get(app));
         apps.remove(app);
     }
 
     public void deploy(ApplicationEntity entity) throws IOException, ClassNotFoundException {
-        LOGGER.info("deploy(). Deploy requested for application " + entity.getName());
+        String appName = entity.getName();
+        LOGGER.info("deploy(). Deploy requested for application " + appName);
+        List<FormDto> forms = new ArrayList<>();
+        for (FormEntity formEntity: entity.getForms()) {
+            forms.add(EntityToDto.toFormDto(formEntity));
+        }
 
-        pocrBean.deployApplication(entity);
-        deployed.add(entity.getName());
+        pocr.generateAndDeployApplication(appName, forms.get(0));
+        deployed.add(appName);
     }
 
     public void run(ApplicationEntity entity) {
