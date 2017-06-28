@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 
@@ -15,9 +16,9 @@ import org.iqltd.pocr.core.artifact.ArtifactWriter;
 
 public class DeploymentDescriptorWriter implements ArtifactWriter {
 
-	private final WebAppType model;
+	private final JAXBElement<WebAppType> model;
 
-	public DeploymentDescriptorWriter(final WebAppType model) {
+	public DeploymentDescriptorWriter(final JAXBElement<WebAppType> model) {
 		this.model = model;
 	}
 

@@ -33,7 +33,7 @@ public class DeploymentDescriptor implements Artifact {
         return new DeploymentDescriptorWriter(getWebAppType());
     }
 
-    private WebAppType getWebAppType() {
+    private JAXBElement<WebAppType> getWebAppType() {
         WebAppType model = new WebAppType();
         model.setId(id);
         model.setVersion(WebappConstants.Schema.VERSION);
@@ -44,7 +44,7 @@ public class DeploymentDescriptor implements Artifact {
         addWelcomeFiles(modules, factory);
         addServlets(modules, factory);
 
-        return model;
+        return factory.createWebApp(model);
     }
 
     private void addWelcomeFiles(List<JAXBElement<?>> modules, ObjectFactory factory) {
