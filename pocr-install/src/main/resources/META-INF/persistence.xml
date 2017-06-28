@@ -5,10 +5,10 @@
 
 	<persistence-unit name="create_schema" transaction-type="RESOURCE_LOCAL">
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-		<class>eu.micul01.pocr.entity.ApplicationEntity</class>
-		<class>eu.micul01.pocr.entity.FormEntity</class>
-		<class>eu.micul01.pocr.entity.FieldEntity</class>
-		<class>eu.micul01.pocr.entity.TypeEntity</class>
+		<class>org.iqltd.pocr.entity.ApplicationEntity</class>
+		<class>org.iqltd.pocr.entity.FormEntity</class>
+		<class>org.iqltd.pocr.entity.FieldEntity</class>
+		<class>org.iqltd.pocr.entity.TypeEntity</class>
 		<properties>
 			<property name="javax.persistence.jdbc.url" value="	jdbc:mysql://localhost:3306/POCR" />
 			<property name="javax.persistence.jdbc.user" value="pocr" />

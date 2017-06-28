@@ -2,10 +2,10 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>eu.micul01.pocr</groupId>
+	<groupId>org.iqltd.pocr</groupId>
 	<artifactId>POCr</artifactId>
 	<packaging>pom</packaging>
-	<version>1.2</version>
+	<version>1.3</version>
 	<name>POCr Application</name>
 
 	<developers>
@@ -15,16 +15,10 @@
 		</developer>
 	</developers>
 
-	<modules>
-		<module>pocr-jaxb</module>
-		<module>pocr-core</module>
-		<module>pocr-persistence</module>
-		<module>pocr-web</module>
-		<module>pocr-install</module>
-    </modules>
-
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <skip-server-deploy>true</skip-server-deploy>
 
 		<codemodel-version>2.6</codemodel-version>
 		<commons-lang3-version>3.3.2</commons-lang3-version>
@@ -47,6 +41,49 @@
 		<wf-mvn-version>1.2.0.Alpha5</wf-mvn-version>
 	</properties>
 
+	<profiles>
+		<profile>
+			<id>default</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<modules>
+				<module>pocr-jaxb</module>
+				<module>pocr-core</module>
+				<module>pocr-persistence</module>
+				<module>pocr-install</module>
+				<module>pocr-web</module>
+			</modules>
+		</profile>
+		<profile>
+			<id>deploy</id>
+			<modules>
+				<module>pocr-core</module>
+				<module>pocr-persistence</module>
+				<module>pocr-web</module>
+			</modules>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.wildfly.plugins</groupId>
+						<artifactId>wildfly-maven-plugin</artifactId>
+						<version>${wf-mvn-version}</version>
+                        <configuration>
+                            <skip>${skip-server-deploy}</skip>
+                        </configuration>
+						<executions>
+							<execution>
+								<phase>install</phase>
+								<goals>
+									<goal>deploy</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 
 	<dependencyManagement>
 		<dependencies>
@@ -187,33 +224,5 @@
 			</plugin>
 		</plugins>
 	</build>
-
-	<profiles>
-		<profile>
-			<id>deploy</id>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.wildfly.plugins</groupId>
-						<artifactId>wildfly-maven-plugin</artifactId>
-						<version>${wf-mvn-version}</version>
-                        <configuration>
-                            <groupId>${project.groupId}</groupId>
-                            <artifactId>pocr-web</artifactId>
-                            <packaging>war</packaging>
-                        </configuration>
-						<executions>
-							<execution>
-								<phase>install</phase>
-								<goals>
-									<goal>deploy</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-	</profiles>
 
 </project>

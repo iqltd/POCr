@@ -4,19 +4,19 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>POCr</artifactId>
-        <groupId>eu.micul01.pocr</groupId>
-        <version>1.2</version>
+        <groupId>org.iqltd.pocr</groupId>
+        <version>1.3</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>pocr-install</artifactId>
     <packaging>jar</packaging>
 
-    <name>pocr install</name>
+    <name>POCr install</name>
 
     <dependencies>
         <dependency>
-            <groupId>eu.micul01.pocr</groupId>
+            <groupId>org.iqltd.pocr</groupId>
             <artifactId>pocr-persistence</artifactId>
             <type>ejb</type>
         </dependency>

@@ -9,7 +9,7 @@
      	        <default-locale>en</default-locale>
      	   </locale-config>
 	   <resource-bundle>
-		<base-name>eu.micul01.pocr.messages</base-name>
+		<base-name>org.iqltd.pocr.messages</base-name>
 		<var>msg</var>
 	   </resource-bundle>
      </application>
